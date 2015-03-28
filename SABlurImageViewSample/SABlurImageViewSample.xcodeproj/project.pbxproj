@@ -15,7 +15,7 @@
 		379345F21AC53698004544D8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379345F01AC53698004544D8 /* LaunchScreen.xib */; };
 		379345FE1AC53699004544D8 /* SABlurImageViewSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379345FD1AC53699004544D8 /* SABlurImageViewSampleTests.swift */; };
 		379346091AC53DD5004544D8 /* UIImage+BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379346081AC53DD5004544D8 /* UIImage+BlurEffect.swift */; };
-		3793460B1AC53E3D004544D8 /* UIImageView+BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793460A1AC53E3D004544D8 /* UIImageView+BlurEffect.swift */; };
+		3793460B1AC53E3D004544D8 /* SABlurImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3793460A1AC53E3D004544D8 /* SABlurImageView.swift */; };
 		3793460F1AC54284004544D8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3793460E1AC54284004544D8 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +42,7 @@
 		379345FC1AC53699004544D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		379345FD1AC53699004544D8 /* SABlurImageViewSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABlurImageViewSampleTests.swift; sourceTree = "<group>"; };
 		379346081AC53DD5004544D8 /* UIImage+BlurEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+BlurEffect.swift"; sourceTree = "<group>"; };
-		3793460A1AC53E3D004544D8 /* UIImageView+BlurEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+BlurEffect.swift"; sourceTree = "<group>"; };
+		3793460A1AC53E3D004544D8 /* SABlurImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SABlurImageView.swift; sourceTree = "<group>"; };
 		3793460E1AC54284004544D8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				379346081AC53DD5004544D8 /* UIImage+BlurEffect.swift */,
-				3793460A1AC53E3D004544D8 /* UIImageView+BlurEffect.swift */,
+				3793460A1AC53E3D004544D8 /* SABlurImageView.swift */,
 			);
 			name = SABlurImageView;
 			path = ../../SABlurImageView;
@@ -235,7 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3793460B1AC53E3D004544D8 /* UIImageView+BlurEffect.swift in Sources */,
+				3793460B1AC53E3D004544D8 /* SABlurImageView.swift in Sources */,
 				379345EA1AC53698004544D8 /* ViewController.swift in Sources */,
 				379346091AC53DD5004544D8 /* UIImage+BlurEffect.swift in Sources */,
 				379345E81AC53698004544D8 /* AppDelegate.swift in Sources */,
