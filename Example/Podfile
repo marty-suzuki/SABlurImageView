@@ -1,8 +1,0 @@
-source 'https://github.com/CocoaPods/Specs.git'
-
-
-target 'SABlurImageView', :exclusive => true do
-  pod "SABlurImageView", :path => "../"
-
-  
-end
