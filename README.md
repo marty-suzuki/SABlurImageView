@@ -13,8 +13,9 @@
 
 ## Features
 
-- [x] iOS task manager like UI
-- [x] Launch Navigation History with Long tap action of Back Bar Button
+- [x] Blur effect with box size
+- [x] Blur animation
+- [x] 0.0 to 1.0 parameter blur
 
 ## Installation
 
@@ -48,7 +49,7 @@ If you want to animate
 	imageView.startBlurAnimation(duration: 2.0)
 ```
 
-First time of blur animation is normal to blur. Second time is blur to normal.
+First time of blur animation is normal to blur. Second time is blur to normal. (automatically set configration of reverse animation)
 
 If you want to use 0.0 to 1.0 parameter
 
