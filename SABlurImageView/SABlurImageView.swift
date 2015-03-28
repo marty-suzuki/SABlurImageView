@@ -16,6 +16,7 @@ public class SABlurImageView : UIImageView {
     private let kMaxImageCount = 10
     private var cgImages = [CGImage]()
     private var nextBlurLayer: CALayer?
+    private var previousImageIndex: Int = -1
     
     public func addBlurEffect(boxSize: Float, times: UInt = 1) {
         if var image = image {
@@ -61,6 +62,34 @@ public class SABlurImageView : UIImageView {
         }
         
         let index = Int(floor(newPercentage * 10))
+        layer.contents = cgImages[index]
+        
+        if index < cgImages.count - 1 {
+            
+            if index != previousImageIndex {
+                let upperImage = cgImages[index + 1]
+                if let nextBlurLayer = nextBlurLayer {
+                    nextBlurLayer.contents = upperImage
+                } else {
+                    let nextBlurLayer = CALayer()
+                    nextBlurLayer.frame = bounds
+                    nextBlurLayer.contents = upperImage
+                    layer.addSublayer(nextBlurLayer)
+                    self.nextBlurLayer = nextBlurLayer
+                }
+            }
+            previousImageIndex = index
+            
+            let minPercentage = newPercentage * 100
+            var alpha = (minPercentage - (minPercentage % 10)) / 10
+            if alpha > 1.0 {
+                alpha = 1.0
+            } else if alpha < 0.0 {
+                alpha = 0.0
+            }
+            
+            nextBlurLayer?.opacity = alpha
+        }
     }
     
     public func startBlurAnimation(#duration: Double) {

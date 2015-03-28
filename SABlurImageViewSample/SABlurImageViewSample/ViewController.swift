@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         animationButton?.addTarget(self, action: "didTapAnimationButton:", forControlEvents: .TouchUpInside)
+        slider?.addTarget(self, action: "didChangeSliderValue:", forControlEvents: .ValueChanged)
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,6 +52,10 @@ class ViewController: UIViewController {
     
     func didTapAnimationButton(sender: UIButton) {
         imageView?.startBlurAnimation(duration: 2.0)
+    }
+    
+    func didChangeSliderValue(sender: UISlider) {
+        imageView?.blur(sender.value)
     }
 }
 
