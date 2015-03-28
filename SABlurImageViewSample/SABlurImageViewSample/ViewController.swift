@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var slider: UISlider?
     @IBOutlet weak var animationButton: UIButton?
+    @IBOutlet weak var applyButton: UIButton?
     
     private var imageView: SABlurImageView?
     
@@ -21,6 +22,7 @@ class ViewController: UIViewController {
         
         animationButton?.addTarget(self, action: "didTapAnimationButton:", forControlEvents: .TouchUpInside)
         slider?.addTarget(self, action: "didChangeSliderValue:", forControlEvents: .ValueChanged)
+        applyButton?.addTarget(self, action: "didTapApplyButton:", forControlEvents: .TouchUpInside)
     }
     
     override func viewDidLayoutSubviews() {
@@ -38,9 +40,8 @@ class ViewController: UIViewController {
         } else if let button = animationButton {
             imageView.configrationForBlurAnimation()
             view.insertSubview(imageView, belowSubview: button)
-        } else {
-            imageView.addBlurEffect(50, times: 3)
-            view.addSubview(imageView)
+        } else if let button = applyButton {
+            view.insertSubview(imageView, belowSubview: button)
         }
         self.imageView = imageView
     }
@@ -56,6 +57,10 @@ class ViewController: UIViewController {
     
     func didChangeSliderValue(sender: UISlider) {
         imageView?.blur(sender.value)
+    }
+    
+    func didTapApplyButton(sender: UIButton) {
+        imageView?.addBlurEffect(10, times: 1)
     }
 }
 

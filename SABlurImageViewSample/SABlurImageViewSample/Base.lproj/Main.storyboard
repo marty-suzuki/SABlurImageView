@@ -171,17 +171,27 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="llP-Nf-os2">
-                                <rect key="frame" x="37" y="66" width="453" height="208"/>
+                                <rect key="frame" x="37" y="110" width="453" height="164"/>
                                 <color key="backgroundColor" red="1" green="0.13032792879999999" blue="0.2062941898" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdJ-7E-aam">
-                                <rect key="frame" x="161" y="127" width="611" height="233"/>
+                                <rect key="frame" x="161" y="171" width="611" height="189"/>
                                 <color key="backgroundColor" red="0.2811128403" green="0.48488376970000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tqQ-Ps-Pal">
-                                <rect key="frame" x="68" y="315" width="484" height="192"/>
+                                <rect key="frame" x="68" y="359" width="484" height="148"/>
                                 <color key="backgroundColor" red="0.99698956230000002" green="1" blue="0.1178893115" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eNP-Jt-Czr">
+                                <rect key="frame" x="50" y="530" width="500" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6b9-Tc-5T1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <state key="normal" title="Apply">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -189,7 +199,10 @@
                             <constraint firstAttribute="trailing" secondItem="llP-Nf-os2" secondAttribute="trailing" constant="110" id="90x-Mu-m1r"/>
                             <constraint firstItem="DD0-Qn-9KJ" firstAttribute="top" secondItem="hdJ-7E-aam" secondAttribute="bottom" constant="240" id="C7b-dZ-EAK"/>
                             <constraint firstItem="DD0-Qn-9KJ" firstAttribute="top" secondItem="tqQ-Ps-Pal" secondAttribute="bottom" constant="93" id="C7f-fw-KHE"/>
+                            <constraint firstAttribute="trailing" secondItem="eNP-Jt-Czr" secondAttribute="trailing" constant="50" id="Jhm-m7-pis"/>
                             <constraint firstItem="llP-Nf-os2" firstAttribute="top" secondItem="ruc-YN-HpK" secondAttribute="bottom" constant="46" id="ODg-Ud-fn1"/>
+                            <constraint firstItem="eNP-Jt-Czr" firstAttribute="leading" secondItem="wVQ-4v-LD4" secondAttribute="leading" constant="50" id="SJb-LT-Bz9"/>
+                            <constraint firstItem="DD0-Qn-9KJ" firstAttribute="top" secondItem="eNP-Jt-Czr" secondAttribute="bottom" constant="20" id="UC3-3a-ogs"/>
                             <constraint firstItem="hdJ-7E-aam" firstAttribute="top" secondItem="ruc-YN-HpK" secondAttribute="bottom" constant="107" id="Urf-XE-d6u"/>
                             <constraint firstItem="llP-Nf-os2" firstAttribute="leading" secondItem="wVQ-4v-LD4" secondAttribute="leading" constant="37" id="VaX-PE-mIZ"/>
                             <constraint firstAttribute="trailing" secondItem="tqQ-Ps-Pal" secondAttribute="trailing" constant="48" id="b94-Aw-iNy"/>
@@ -199,6 +212,9 @@
                             <constraint firstItem="tqQ-Ps-Pal" firstAttribute="leading" secondItem="wVQ-4v-LD4" secondAttribute="leading" constant="68" id="qKn-J7-Uzl"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="applyButton" destination="eNP-Jt-Czr" id="lLI-ft-ZoZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="In2-uV-xvM" sceneMemberID="firstResponder"/>
             </objects>

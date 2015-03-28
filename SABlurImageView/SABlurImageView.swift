@@ -15,6 +15,7 @@ public class SABlurImageView : UIImageView {
     private let kFadeAnimationKey = "Fade"
     private let kMaxImageCount = 10
     private var cgImages = [CGImage]()
+    private var currentBlurLayer: CALayer?
     private var nextBlurLayer: CALayer?
     private var previousImageIndex: Int = -1
     
@@ -62,32 +63,50 @@ public class SABlurImageView : UIImageView {
         }
         
         let index = Int(floor(newPercentage * 10))
-        layer.contents = cgImages[index]
-        
         if index < cgImages.count - 1 {
             
             if index != previousImageIndex {
+                
+                let lowerImage = cgImages[index]
+                layer.contents = lowerImage
+//                if let currentBlurLayer = currentBlurLayer {
+//                    currentBlurLayer.contents = lowerImage
+//                    currentBlurLayer.opacity = 0.0
+//                } else {
+//                    let currentBlurLayer = CALayer()
+//                    currentBlurLayer.frame = bounds
+//                    currentBlurLayer.contents = lowerImage
+//                    currentBlurLayer.opacity = 0.0
+//                    layer.addSublayer(currentBlurLayer)
+//                    self.currentBlurLayer = currentBlurLayer
+//                }
+                
                 let upperImage = cgImages[index + 1]
                 if let nextBlurLayer = nextBlurLayer {
                     nextBlurLayer.contents = upperImage
+                    nextBlurLayer.opacity = 0.0
                 } else {
                     let nextBlurLayer = CALayer()
                     nextBlurLayer.frame = bounds
                     nextBlurLayer.contents = upperImage
+                    nextBlurLayer.opacity = 0.0
                     layer.addSublayer(nextBlurLayer)
                     self.nextBlurLayer = nextBlurLayer
                 }
             }
             previousImageIndex = index
             
-            let minPercentage = newPercentage * 100
-            var alpha = (minPercentage - (minPercentage % 10)) / 10
+            let minPercentage = newPercentage * 100.0            
+            var alpha = (minPercentage - Float(Int(minPercentage / 10.0)  * 10)) / 10.0
             if alpha > 1.0 {
                 alpha = 1.0
             } else if alpha < 0.0 {
                 alpha = 0.0
             }
             
+            println("opacity \(alpha)")
+            //layer.opacity = 1.0 - alpha
+            //currentBlurLayer?.opacity = 1.0 - alpha
             nextBlurLayer?.opacity = alpha
         }
     }
