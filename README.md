@@ -34,6 +34,8 @@ Add the [SABlurImageView](./SABlurImageView) directory to your project.
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+If you install from pod, you have to write `import SABlurImageView`.
+
 If you want to apply blur effect for image
 
 ```swift
