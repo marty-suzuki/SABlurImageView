@@ -15,7 +15,6 @@ public class SABlurImageView : UIImageView {
     private let kFadeAnimationKey = "Fade"
     private let kMaxImageCount = 10
     private var cgImages = [CGImage]()
-    private var currentBlurLayer: CALayer?
     private var nextBlurLayer: CALayer?
     private var previousImageIndex: Int = -1
     
@@ -67,32 +66,16 @@ public class SABlurImageView : UIImageView {
             
             if index != previousImageIndex {
                 
-                let lowerImage = cgImages[index]
-                layer.contents = lowerImage
-//                if let currentBlurLayer = currentBlurLayer {
-//                    currentBlurLayer.contents = lowerImage
-//                    currentBlurLayer.opacity = 0.0
-//                } else {
-//                    let currentBlurLayer = CALayer()
-//                    currentBlurLayer.frame = bounds
-//                    currentBlurLayer.contents = lowerImage
-//                    currentBlurLayer.opacity = 0.0
-//                    layer.addSublayer(currentBlurLayer)
-//                    self.currentBlurLayer = currentBlurLayer
-//                }
+                layer.contents = cgImages[index]
                 
-                let upperImage = cgImages[index + 1]
-                if let nextBlurLayer = nextBlurLayer {
-                    nextBlurLayer.contents = upperImage
-                    nextBlurLayer.opacity = 0.0
-                } else {
+                if nextBlurLayer == nil {
                     let nextBlurLayer = CALayer()
                     nextBlurLayer.frame = bounds
-                    nextBlurLayer.contents = upperImage
-                    nextBlurLayer.opacity = 0.0
                     layer.addSublayer(nextBlurLayer)
                     self.nextBlurLayer = nextBlurLayer
                 }
+                nextBlurLayer?.contents = cgImages[index + 1]
+                nextBlurLayer?.opacity = 0.0
             }
             previousImageIndex = index
             
@@ -103,10 +86,6 @@ public class SABlurImageView : UIImageView {
             } else if alpha < 0.0 {
                 alpha = 0.0
             }
-            
-            println("opacity \(alpha)")
-            //layer.opacity = 1.0 - alpha
-            //currentBlurLayer?.opacity = 1.0 - alpha
             nextBlurLayer?.opacity = alpha
         }
     }

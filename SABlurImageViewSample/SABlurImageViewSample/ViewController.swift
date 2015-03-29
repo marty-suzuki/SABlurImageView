@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SABlurImageView
 
 class ViewController: UIViewController {
 

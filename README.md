@@ -4,12 +4,12 @@
 )](https://developer.apple.com/iphone/index.action)
 [![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat
 )](https://developer.apple.com/swift)
-[![Version](https://img.shields.io/cocoapods/v/SAHistoryNavigationViewController.svg?style=flat)](http://cocoapods.org/pods/SAHistoryNavigationViewController)
-[![License](https://img.shields.io/cocoapods/l/SAHistoryNavigationViewController.svg?style=flat)](http://cocoapods.org/pods/SAHistoryNavigationViewController)
+[![Version](https://img.shields.io/cocoapods/v/SABlurImageView.svg?style=flat)](http://cocoapods.org/pods/SABlurImageView)
+[![License](https://img.shields.io/cocoapods/l/SABlurImageView.svg?style=flat)](http://cocoapods.org/pods/SABlurImageView)
 
 ![](./SampleImage/sample.gif)
 
-
+You can use blur effect and it's animation easily to call only two methods.
 
 ## Features
 
