@@ -10,7 +10,7 @@
 Pod::Spec.new do |s|
   s.name             = "SABlurImageView"
   s.version          = "0.1.0"
-  s.summary          = "A short description of SABlurImageView."
+  s.summary          = "You can use blur effect and it's animation easily to call only two methods."
 
   s.homepage         = "https://github.com/szk-atmosphere/SABlurImageView"
 
