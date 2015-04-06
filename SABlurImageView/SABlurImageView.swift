@@ -64,88 +64,60 @@ public class SABlurImageView : UIImageView {
         
         if previousPercentage - newPercentage  > 0 {
             
-            let index = Int(floor(newPercentage * 10))
+            let index = Int(floor(newPercentage * 10)) + 1
             if index > 0 {
-                
-                if index != previousImageIndex {
-                    
-                    CATransaction.begin()
-                    CATransaction.setAnimationDuration(0)
-                    layer.contents = cgImages[index - 1]
-                    CATransaction.commit()
-                    
-                    if nextBlurLayer == nil {
-                        let nextBlurLayer = CALayer()
-                        nextBlurLayer.frame = bounds
-                        layer.addSublayer(nextBlurLayer)
-                        self.nextBlurLayer = nextBlurLayer
-                    }
-                    
-                    CATransaction.begin()
-                    CATransaction.setAnimationDuration(0)
-                    nextBlurLayer?.contents = cgImages[index]
-                    nextBlurLayer?.opacity = 1.0
-                    CATransaction.commit()
-                }
-                previousImageIndex = index
-                
-                let minPercentage = newPercentage * 100.0
-                var alpha = (minPercentage - Float(Int(minPercentage / 10.0)  * 10)) / 10.0
-                if alpha > 1.0 {
-                    alpha = 1.0
-                } else if alpha < 0.0 {
-                    alpha = 0.0
-                }
-                CATransaction.begin()
-                CATransaction.setAnimationDuration(0)
-                nextBlurLayer?.opacity = alpha
-                CATransaction.commit()
+                setLayers(index, percentage: newPercentage, currentIndex: index - 1, nextIndex: index)
             }
             
         } else {
             
             let index = Int(floor(newPercentage * 10))
             if index < cgImages.count - 1 {
-                
-                if index != previousImageIndex {
-                    
-                    CATransaction.begin()
-                    CATransaction.setAnimationDuration(0)
-                    layer.contents = cgImages[index]
-                    CATransaction.commit()
-                    
-                    if nextBlurLayer == nil {
-                        let nextBlurLayer = CALayer()
-                        nextBlurLayer.frame = bounds
-                        layer.addSublayer(nextBlurLayer)
-                        self.nextBlurLayer = nextBlurLayer
-                    }
-                    CATransaction.begin()
-                    CATransaction.setAnimationDuration(0)
-                    nextBlurLayer?.contents = cgImages[index + 1]
-                    nextBlurLayer?.opacity = 0.0
-                    CATransaction.commit()
-                }
-                previousImageIndex = index
-                
-                let minPercentage = newPercentage * 100.0
-                var alpha = (minPercentage - Float(Int(minPercentage / 10.0)  * 10)) / 10.0
-                if alpha > 1.0 {
-                    alpha = 1.0
-                } else if alpha < 0.0 {
-                    alpha = 0.0
-                }
-                CATransaction.begin()
-                CATransaction.setAnimationDuration(0)
-                nextBlurLayer?.opacity = alpha
-                CATransaction.commit()
+                setLayers(index, percentage: newPercentage, currentIndex: index, nextIndex: index + 1)
             }
         }
         previousPercentage = newPercentage
     }
     
-    public func startBlurAnimation(#duration: Double) {
+    private func setLayers(index: Int, percentage: Float, currentIndex: Int, nextIndex: Int) {
+        if index != previousImageIndex {
             
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(0)
+            layer.contents = cgImages[currentIndex]
+            CATransaction.commit()
+            
+            if nextBlurLayer == nil {
+                let nextBlurLayer = CALayer()
+                nextBlurLayer.frame = bounds
+                layer.addSublayer(nextBlurLayer)
+                self.nextBlurLayer = nextBlurLayer
+            }
+            
+            CATransaction.begin()
+            CATransaction.setAnimationDuration(0)
+            nextBlurLayer?.contents = cgImages[nextIndex]
+            nextBlurLayer?.opacity = 1.0
+            CATransaction.commit()
+        }
+        previousImageIndex = index
+        
+        let minPercentage = percentage * 100.0
+        var alpha = (minPercentage - Float(Int(minPercentage / 10.0)  * 10)) / 10.0
+        if alpha > 1.0 {
+            alpha = 1.0
+        } else if alpha < 0.0 {
+            alpha = 0.0
+        }
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0)
+        nextBlurLayer?.opacity = alpha
+        CATransaction.commit()
+    }
+    
+    public func startBlurAnimation(#duration: Double) {
+        
         let count = Double(cgImages.count)
         for (index, cgImage) in enumerate(cgImages) {
             
