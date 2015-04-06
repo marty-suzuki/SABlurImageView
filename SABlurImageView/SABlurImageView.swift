@@ -64,10 +64,12 @@ public class SABlurImageView : UIImageView {
         
         if previousPercentage - newPercentage  > 0 {
             
-            let index = Int(floor(newPercentage * 10))
+            let index = Int(floor(newPercentage * 10)) + 1
             if index > 0 {
                 
                 if index != previousImageIndex {
+                    
+                    println("minus index: \(index)")
                     
                     CATransaction.begin()
                     CATransaction.setAnimationDuration(0)
@@ -96,6 +98,9 @@ public class SABlurImageView : UIImageView {
                 } else if alpha < 0.0 {
                     alpha = 0.0
                 }
+                
+                println("minus alpha: \(alpha)")
+                
                 CATransaction.begin()
                 CATransaction.setAnimationDuration(0)
                 nextBlurLayer?.opacity = alpha
@@ -108,6 +113,8 @@ public class SABlurImageView : UIImageView {
             if index < cgImages.count - 1 {
                 
                 if index != previousImageIndex {
+                    
+                    println("plus index: \(index)")
                     
                     CATransaction.begin()
                     CATransaction.setAnimationDuration(0)
@@ -135,6 +142,9 @@ public class SABlurImageView : UIImageView {
                 } else if alpha < 0.0 {
                     alpha = 0.0
                 }
+                
+                println("plus alpha: \(alpha)")
+                
                 CATransaction.begin()
                 CATransaction.setAnimationDuration(0)
                 nextBlurLayer?.opacity = alpha
