@@ -59,7 +59,7 @@ public class SABlurImageView : UIImageView {
         if newPercentage < 0.0 {
             newPercentage = 0.0
         } else if newPercentage > 1.0 {
-            newPercentage = 1.0
+            newPercentage = 0.99
         }
         
         if previousPercentage - newPercentage  > 0 {
