@@ -71,7 +71,7 @@ pod "SABlurImageView"
 ```
 ## Requirements
 
-- Xcode 6.1 or greater
+- Xcode 6.3 or greater
 - iOS7.0(manually only) or greater
 - QuartzCore
 - Accelerate
