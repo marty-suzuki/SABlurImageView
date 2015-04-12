@@ -31,8 +31,8 @@ extension CGImage {
         
         let inProvider = CGImageGetDataProvider(self)
         
-        let height = CGImageGetHeight(self)
-        let width = CGImageGetWidth(self)
+        let height = vImagePixelCount(CGImageGetHeight(self))
+        let width = vImagePixelCount(CGImageGetWidth(self))
         let rowBytes = CGImageGetBytesPerRow(self)
         
         let inBitmapData = CGDataProviderCopyData(inProvider)
@@ -45,7 +45,7 @@ extension CGImage {
         let error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, nil, 0, 0, UInt32(boxSize), UInt32(boxSize), nil, vImage_Flags(kvImageEdgeExtend))
         
         var colorSpace = CGColorSpaceCreateDeviceRGB()
-        let context = CGBitmapContextCreate(outBuffer.data, outBuffer.width, outBuffer.height, 8, outBuffer.rowBytes, colorSpace, CGImageGetBitmapInfo(self))
+        let context = CGBitmapContextCreate(outBuffer.data, Int(outBuffer.width), Int(outBuffer.height), 8, outBuffer.rowBytes, colorSpace, CGImageGetBitmapInfo(self))
         let imageRef = CGBitmapContextCreateImage(context)
         
         free(outData)
