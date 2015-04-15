@@ -20,14 +20,14 @@ extension UIImage {
     }
     
     func bluredCGImage(boxSize: Float) -> CGImageRef! {
-        return CGImage.blurEffect(boxSize, scale: Float(scale))
+        return CGImage.blurEffect(boxSize)
     }
 }
 
 extension CGImage {
-    func blurEffect(boxSize: Float, scale: Float) -> CGImageRef! {
+    func blurEffect(boxSize: Float) -> CGImageRef! {
         
-        let boxSize = (boxSize - (boxSize % 2) + 1) * scale
+        let boxSize = boxSize - (boxSize % 2) + 1
         
         let inProvider = CGImageGetDataProvider(self)
         
