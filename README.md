@@ -80,6 +80,10 @@ pod "SABlurImageView"
 
 Taiki Suzuki, s1180183@gmail.com
 
+## Other
+
+Objective-C version of this project is [SABlurImageViewObjc](https://github.com/szk-atmosphere/SABlurImageViewObjc).
+
 ## License
 
 SABlurImageView is available under the MIT license. See the LICENSE file for more info.
