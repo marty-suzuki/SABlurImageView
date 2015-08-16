@@ -12,13 +12,27 @@ import QuartzCore
 
 public class SABlurImageView : UIImageView {
     
-    private let kFadeAnimationKey = "Fade"
+    //MARK: - Static Properties
+    static private let kFadeAnimationKey = "Fade"
+    
+    //MARK: - Instance Properties
     private let kMaxImageCount = 10
     private var cgImages = [CGImage]()
     private var nextBlurLayer: CALayer?
     private var previousImageIndex: Int = -1
     private var previousPercentage: Float = 0.0
-    
+}
+
+//MARK: = Life Cycle
+public extension SABlurImageView {
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        nextBlurLayer?.frame = bounds
+    }
+}
+
+//MARK: - Public Methods
+public extension SABlurImageView {
     public func addBlurEffect(boxSize: Float, times: UInt = 1) {
         if var image = image {
             for _ in 0..<times {
@@ -133,7 +147,7 @@ public class SABlurImageView : UIImageView {
                 transition.repeatCount = 1
                 transition.removedOnCompletion = false
                 transition.delegate = self
-                self.layer.addAnimation(transition, forKey: self.kFadeAnimationKey)
+                self.layer.addAnimation(transition, forKey: SABlurImageView.kFadeAnimationKey)
                 
                 self.layer.contents = cgImage
             })
@@ -145,7 +159,7 @@ public class SABlurImageView : UIImageView {
     override public func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
         if flag {
             if let transition = anim as? CATransition {
-                layer.removeAnimationForKey(kFadeAnimationKey)
+                layer.removeAnimationForKey(SABlurImageView.kFadeAnimationKey)
             }
         }
     }
