@@ -11,6 +11,9 @@
 
 You can use blur effect and it's animation easily to call only two methods.
 
+[ManiacDev.com](https://maniacdev.com/) referred.  
+[https://maniacdev.com/2015/04/open-source-ios-library-for-easily-adding-animated-blurunblur-effects-to-an-image](https://maniacdev.com/2015/04/open-source-ios-library-for-easily-adding-animated-blurunblur-effects-to-an-image)
+
 ## Features
 
 - [x] Blur effect with box size
