@@ -12,15 +12,27 @@ import QuartzCore
 
 public class SABlurImageView : UIImageView {
     
+    private typealias AnimationFunction = Void -> ()
+    
     //MARK: - Static Properties
-    static private let kFadeAnimationKey = "Fade"
+    static private let FadeAnimationKey = "Fade"
     
     //MARK: - Instance Properties
-    private let kMaxImageCount = 10
-    private var cgImages = [CGImage]()
+    private let kMaxImageCount: Int = 10
+    private var cgImages: [CGImage] = [CGImage]()
     private var nextBlurLayer: CALayer?
     private var previousImageIndex: Int = -1
     private var previousPercentage: Float = 0.0
+    private var animations: [AnimationFunction]?
+    
+    deinit {
+        cgImages.removeAll(keepCapacity: false)
+        nextBlurLayer?.removeFromSuperlayer()
+        nextBlurLayer = nil
+        animations?.removeAll(keepCapacity: false)
+        animations = nil
+        layer.removeAllAnimations()
+    }
 }
 
 //MARK: = Life Cycle
@@ -95,7 +107,6 @@ public extension SABlurImageView {
     
     private func setLayers(index: Int, percentage: Float, currentIndex: Int, nextIndex: Int) {
         if index != previousImageIndex {
-            
             CATransaction.begin()
             CATransaction.setAnimationDuration(0)
             layer.contents = cgImages[currentIndex]
@@ -131,14 +142,13 @@ public extension SABlurImageView {
     }
     
     public func startBlurAnimation(#duration: Double) {
+        if animations == nil {
+            animations = [AnimationFunction]()
+        }
         
         let count = Double(cgImages.count)
         for (index, cgImage) in enumerate(cgImages) {
-            
-            let delay = (duration / count) * Double(NSEC_PER_SEC) * Double(index)
-            let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue(), {
-                
+            animations?.append() { [weak self] in
                 let transition = CATransition()
                 transition.duration = (duration) / count
                 transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
@@ -147,19 +157,28 @@ public extension SABlurImageView {
                 transition.repeatCount = 1
                 transition.removedOnCompletion = false
                 transition.delegate = self
-                self.layer.addAnimation(transition, forKey: SABlurImageView.kFadeAnimationKey)
-                
-                self.layer.contents = cgImage
-            })
+                self?.layer.addAnimation(transition, forKey: SABlurImageView.FadeAnimationKey)
+                self?.layer.contents = cgImage
+            }
+        }
+        
+        if let animation = animations?.first {
+            animation()
+            animations?.removeAtIndex(0)
         }
         
         cgImages = cgImages.reverse()
     }
     
     override public func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
-        if flag {
-            if let transition = anim as? CATransition {
-                layer.removeAnimationForKey(SABlurImageView.kFadeAnimationKey)
+        if let transition = anim as? CATransition {
+            layer.removeAllAnimations()
+            if let animation = animations?.first {
+                animation()
+                animations?.removeAtIndex(0)
+            } else {
+                animations?.removeAll(keepCapacity: false)
+                animations = nil
             }
         }
     }
