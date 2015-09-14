@@ -20,7 +20,7 @@ extension UIImage {
     }
     
     func bluredCGImage(boxSize: Float) -> CGImageRef! {
-        return CGImage.blurEffect(boxSize)
+        return CGImage!.blurEffect(boxSize)
     }
 }
 
@@ -42,10 +42,10 @@ extension CGImage {
         let outData = malloc(CGImageGetBytesPerRow(self) * CGImageGetHeight(self))
         var outBuffer = vImage_Buffer(data: outData, height: height, width: width, rowBytes: rowBytes)
         
-        let error = vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, nil, 0, 0, UInt32(boxSize), UInt32(boxSize), nil, vImage_Flags(kvImageEdgeExtend))
+        vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, nil, 0, 0, UInt32(boxSize), UInt32(boxSize), nil, vImage_Flags(kvImageEdgeExtend))
         
-        var colorSpace = CGColorSpaceCreateDeviceRGB()
-        let context = CGBitmapContextCreate(outBuffer.data, Int(outBuffer.width), Int(outBuffer.height), 8, outBuffer.rowBytes, colorSpace, CGImageGetBitmapInfo(self))
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let context = CGBitmapContextCreate(outBuffer.data, Int(outBuffer.width), Int(outBuffer.height), 8, outBuffer.rowBytes, colorSpace, CGImageGetBitmapInfo(self).rawValue)
         let imageRef = CGBitmapContextCreateImage(context)
         
         free(outData)

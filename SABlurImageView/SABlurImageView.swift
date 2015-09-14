@@ -55,26 +55,30 @@ public extension SABlurImageView {
     }
     
     public func configrationForBlurAnimation(boxSize: Float = 100) {
-        if var image = image {
+        guard var image = image else {
+            return
+        }
+        
+        if let cgImage = image.CGImage {
+            cgImages += [cgImage]
+        }
             
-            cgImages += [image.CGImage]
+        var newBoxSize = boxSize
+        if newBoxSize > 200 {
+            newBoxSize = 200
+        } else if newBoxSize < 0 {
+            newBoxSize = 0
+        }
+        
+        let number = sqrt(Double(newBoxSize)) / Double(kMaxImageCount)
+        for index in 0..<kMaxImageCount {
             
-            var newBoxSize = boxSize
-            if newBoxSize > 200 {
-                newBoxSize = 200
-            } else if newBoxSize < 0 {
-                newBoxSize = 0
-            }
+            let value = Double(index) * number
+            let boxSize = value * value
             
-            let number = sqrt(Double(newBoxSize)) / Double(kMaxImageCount)
-            for index in 0..<kMaxImageCount {
-                
-                let value = Double(index) * number
-                let boxSize = value * value
-                
-                image = image.blurEffect(Float(boxSize))
-                
-                let cgImage = image.CGImage
+            image = image.blurEffect(Float(boxSize))
+            
+            if let cgImage = image.CGImage {
                 cgImages += [cgImage]
             }
         }
@@ -141,16 +145,16 @@ public extension SABlurImageView {
         CATransaction.commit()
     }
     
-    public func startBlurAnimation(#duration: Double) {
+    public func startBlurAnimation(duration _duration: Double) {
         if animations == nil {
             animations = [AnimationFunction]()
         }
         
         let count = Double(cgImages.count)
-        for (index, cgImage) in enumerate(cgImages) {
+        for cgImage in cgImages {
             animations?.append() { [weak self] in
                 let transition = CATransition()
-                transition.duration = (duration) / count
+                transition.duration = (_duration) / count
                 transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
                 transition.type = kCATransitionFade
                 transition.fillMode = kCAFillModeForwards
@@ -164,22 +168,24 @@ public extension SABlurImageView {
         
         if let animation = animations?.first {
             animation()
-            animations?.removeAtIndex(0)
+            let _ = animations?.removeFirst()
         }
         
         cgImages = cgImages.reverse()
     }
     
-    override public func animationDidStop(anim: CAAnimation!, finished flag: Bool) {
-        if let transition = anim as? CATransition {
-            layer.removeAllAnimations()
-            if let animation = animations?.first {
-                animation()
-                animations?.removeAtIndex(0)
-            } else {
-                animations?.removeAll(keepCapacity: false)
-                animations = nil
-            }
+    override public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+        guard let _ = anim as? CATransition else {
+            return
+        }
+        
+        layer.removeAllAnimations()
+        if let animation = animations?.first {
+            animation()
+            let _ = animations?.removeFirst()
+        } else {
+            animations?.removeAll(keepCapacity: false)
+            animations = nil
         }
     }
 }
