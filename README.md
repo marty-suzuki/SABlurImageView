@@ -25,7 +25,7 @@ You can use blur effect and it's animation easily to call only two methods.
 
 #### CocoaPods
 
-SABlurImageView is available through [CocoaPods](http://cocoapods.org). If you have cocoapods 0.36.0 or greater, you can install
+SABlurImageView is available through [CocoaPods](http://cocoapods.org). If you have cocoapods 0.38.0 or greater, you can install
 it, simply add the following line to your Podfile:
 
     pod "SABlurImageView"
@@ -75,7 +75,7 @@ pod "SABlurImageView"
 ```
 ## Requirements
 
-- Xcode 6.3 or greater
+- Xcode 7.0 or greater
 - iOS7.0(manually only) or greater
 - QuartzCore
 - Accelerate
