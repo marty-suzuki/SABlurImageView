@@ -11,6 +11,7 @@
 		193338039FF852C9CAF0F8A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1F1B14F390F998388A5EE06 /* UIKit.framework */; };
 		283A1FAAB8D83DFE1C57E067 /* UIImage+BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B8A0140B5E2873AFECF04E /* UIImage+BlurEffect.swift */; };
 		3498C4AD79B2E537A3535FB7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C964D1DBAD124C8C8BB71CA9 /* Foundation.framework */; };
+		373C48D31C500355008D00D5 /* CATransition+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373C48D21C500355008D00D5 /* CATransition+Closure.swift */; };
 		41335BC4E547900B3C2F2B7D /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AD6654C1E013E6A8B866B1 /* Pods-dummy.m */; };
 		691445AF1EF32D5EA075C895 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 793DBB7463EE5EE38E4DCC23 /* Accelerate.framework */; };
 		6B02658236462C55FA3B118F /* SABlurImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F16BA0B10252DF43BE9831 /* SABlurImageView.swift */; };
@@ -34,6 +35,7 @@
 		0B42B44191834EE43BEDD6C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		12A7BE9D903D98CA6DAC66EF /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
 		19F16BA0B10252DF43BE9831 /* SABlurImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SABlurImageView.swift; sourceTree = "<group>"; };
+		373C48D21C500355008D00D5 /* CATransition+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CATransition+Closure.swift"; sourceTree = "<group>"; };
 		4C87C175D7DE0D97F0019C42 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		581F7098159477BC9B663AFF /* Pods-SABlurImageView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SABlurImageView-dummy.m"; sourceTree = "<group>"; };
 		5B4DC449A82DD3C76DE91D04 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				19F16BA0B10252DF43BE9831 /* SABlurImageView.swift */,
 				76B8A0140B5E2873AFECF04E /* UIImage+BlurEffect.swift */,
+				373C48D21C500355008D00D5 /* CATransition+Closure.swift */,
 			);
 			path = SABlurImageView;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				373C48D31C500355008D00D5 /* CATransition+Closure.swift in Sources */,
 				0E4967F4E83491282905D85F /* Pods-SABlurImageView-dummy.m in Sources */,
 				6B02658236462C55FA3B118F /* SABlurImageView.swift in Sources */,
 				283A1FAAB8D83DFE1C57E067 /* UIImage+BlurEffect.swift in Sources */,
