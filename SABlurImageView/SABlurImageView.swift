@@ -10,111 +10,95 @@ import UIKit
 import Foundation
 import QuartzCore
 
-public class SABlurImageView : UIImageView {
+public class SABlurImageView: UIImageView {
     
     private typealias AnimationFunction = Void -> ()
     
     //MARK: - Static Properties
     static private let FadeAnimationKey = "Fade"
+    static private let MaxImageCount: Int = 10
     
     //MARK: - Instance Properties
-    private let kMaxImageCount: Int = 10
     private var cgImages: [CGImage] = [CGImage]()
     private var nextBlurLayer: CALayer?
     private var previousImageIndex: Int = -1
-    private var previousPercentage: Float = 0.0
+    private var previousPercentage: CGFloat = 0.0
     private var animations: [AnimationFunction]?
     
     deinit {
-        cgImages.removeAll(keepCapacity: false)
-        nextBlurLayer?.removeFromSuperlayer()
-        nextBlurLayer = nil
-        animations?.removeAll(keepCapacity: false)
-        animations = nil
-        layer.removeAllAnimations()
+        clearMemory()
     }
 }
 
-//MARK: = Life Cycle
+//MARK: - Life Cycle
 public extension SABlurImageView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         nextBlurLayer?.frame = bounds
     }
-}
-
-//MARK: - Public Methods
-public extension SABlurImageView {
-    public func addBlurEffect(boxSize: Float, times: UInt = 1) {
-        if var image = image {
-            for _ in 0..<times {
-                image = image.blurEffect(boxSize)
-            }
-            self.image = image
-        }
-    }
     
-    public func configrationForBlurAnimation(boxSize: Float = 100) {
-        guard var image = image else {
-            return
-        }
-        
+    public func configrationForBlurAnimation(boxSize: CGFloat = 100) {
+        guard var image = image else { return }
         if let cgImage = image.CGImage {
             cgImages += [cgImage]
         }
-            
-        var newBoxSize = boxSize
-        if newBoxSize > 200 {
-            newBoxSize = 200
-        } else if newBoxSize < 0 {
-            newBoxSize = 0
-        }
-        
-        let number = sqrt(Double(newBoxSize)) / Double(kMaxImageCount)
-        for index in 0..<kMaxImageCount {
-            
-            let value = Double(index) * number
+        let newBoxSize = max(min(boxSize, 200), 0)
+        let number = sqrt(CGFloat(newBoxSize)) / CGFloat(self.dynamicType.MaxImageCount)
+        (0..<self.dynamicType.MaxImageCount).forEach {
+            let value = CGFloat($0) * number
             let boxSize = value * value
-            
-            image = image.blurEffect(Float(boxSize))
-            
+            image = image.blurEffect(boxSize)
             if let cgImage = image.CGImage {
                 cgImages += [cgImage]
             }
         }
     }
     
-    public func blur(percentage: Float) {
-        var newPercentage = percentage
-        if newPercentage < 0.0 {
-            newPercentage = 0.0
-        } else if newPercentage > 1.0 {
-            newPercentage = 0.99
-        }
-        
-        if previousPercentage - newPercentage  > 0 {
-            
-            let index = Int(floor(newPercentage * 10)) + 1
-            if index > 0 {
-                setLayers(index, percentage: newPercentage, currentIndex: index - 1, nextIndex: index)
-            }
-            
-        } else {
-            
-            let index = Int(floor(newPercentage * 10))
-            if index < cgImages.count - 1 {
-                setLayers(index, percentage: newPercentage, currentIndex: index, nextIndex: index + 1)
-            }
-        }
-        previousPercentage = newPercentage
+    public func clearMemory() {
+        cgImages.removeAll(keepCapacity: false)
+        nextBlurLayer?.removeFromSuperlayer()
+        nextBlurLayer = nil
+        previousImageIndex = -1
+        previousPercentage = 0.0
+        animations?.removeAll(keepCapacity: false)
+        animations = nil
+        layer.removeAllAnimations()
+    }
+}
+
+//MARK: - Add single blur
+public extension SABlurImageView {
+    public func addBlurEffect(boxSize: CGFloat, times: UInt = 1) {
+        guard let image = image else { return }
+        self.image = addBlurEffectTo(image, boxSize: boxSize, remainTimes: times)
     }
     
-    private func setLayers(index: Int, percentage: Float, currentIndex: Int, nextIndex: Int) {
+    private func addBlurEffectTo(image: UIImage, boxSize: CGFloat, remainTimes: UInt) -> UIImage {
+        return remainTimes > 0 ? addBlurEffectTo(image.blurEffect(boxSize), boxSize: boxSize, remainTimes: remainTimes - 1) : image
+    }
+}
+
+//MARK: - Percentage blur
+public extension SABlurImageView {
+    public func blur(percentage: CGFloat) {
+        let percentage = min(max(percentage, 0.0), 0.99)
+        if previousPercentage - percentage  > 0 {
+            let index = Int(floor(percentage * 10)) + 1
+            if index > 0 {
+                setLayers(index, percentage: percentage, currentIndex: index - 1, nextIndex: index)
+            }
+        } else {
+            let index = Int(floor(percentage * 10))
+            if index < cgImages.count - 1 {
+                setLayers(index, percentage: percentage, currentIndex: index, nextIndex: index + 1)
+            }
+        }
+        previousPercentage = percentage
+    }
+    
+    private func setLayers(index: Int, percentage: CGFloat, currentIndex: Int, nextIndex: Int) {
         if index != previousImageIndex {
-            CATransaction.begin()
-            CATransaction.setAnimationDuration(0)
-            layer.contents = cgImages[currentIndex]
-            CATransaction.commit()
+            CATransaction.animationWithDuration(0) { layer.contents = self.cgImages[currentIndex] }
             
             if nextBlurLayer == nil {
                 let nextBlurLayer = CALayer()
@@ -123,45 +107,34 @@ public extension SABlurImageView {
                 self.nextBlurLayer = nextBlurLayer
             }
             
-            CATransaction.begin()
-            CATransaction.setAnimationDuration(0)
-            nextBlurLayer?.contents = cgImages[nextIndex]
-            nextBlurLayer?.opacity = 1.0
-            CATransaction.commit()
+            CATransaction.animationWithDuration(0) {
+                self.nextBlurLayer?.contents = self.cgImages[nextIndex]
+                self.nextBlurLayer?.opacity = 1.0
+            }
         }
         previousImageIndex = index
         
         let minPercentage = percentage * 100.0
-        var alpha = (minPercentage - Float(Int(minPercentage / 10.0)  * 10)) / 10.0
-        if alpha > 1.0 {
-            alpha = 1.0
-        } else if alpha < 0.0 {
-            alpha = 0.0
-        }
-        
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(0)
-        nextBlurLayer?.opacity = alpha
-        CATransaction.commit()
+        let alpha = min(max((minPercentage - CGFloat(Int(minPercentage / 10.0)  * 10)) / 10.0, 0.0), 1.0)
+        CATransaction.animationWithDuration(0) { self.nextBlurLayer?.opacity = Float(alpha) }
     }
-    
-    public func startBlurAnimation(duration _duration: Double) {
-        if animations == nil {
-            animations = [AnimationFunction]()
-        }
-        
+}
+
+//MARK: - Animation blur
+public extension SABlurImageView {
+    public func startBlurAnimation(duration duration: NSTimeInterval) {
         let count = Double(cgImages.count)
-        for cgImage in cgImages {
-            animations?.append() { [weak self] in
+        animations = cgImages.map { cgImage in
+            return { [weak self] in
                 let transition = CATransition()
-                transition.duration = (_duration) / count
+                transition.duration = (duration) / count
                 transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
                 transition.type = kCATransitionFade
                 transition.fillMode = kCAFillModeForwards
                 transition.repeatCount = 1
                 transition.removedOnCompletion = false
                 transition.delegate = self
-                self?.layer.addAnimation(transition, forKey: SABlurImageView.FadeAnimationKey)
+                self?.layer.addAnimation(transition, forKey: self?.dynamicType.FadeAnimationKey)
                 self?.layer.contents = cgImage
             }
         }
@@ -170,22 +143,18 @@ public extension SABlurImageView {
             animation()
             let _ = animations?.removeFirst()
         }
-        
         cgImages = cgImages.reverse()
     }
     
     override public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-        guard let _ = anim as? CATransition else {
-            return
-        }
-        
+        guard let _ = anim as? CATransition else { return }
         layer.removeAllAnimations()
-        if let animation = animations?.first {
-            animation()
-            let _ = animations?.removeFirst()
-        } else {
+        guard let animation = animations?.first else {
             animations?.removeAll(keepCapacity: false)
             animations = nil
+            return
         }
+        animation()
+        let _ = animations?.removeFirst()
     }
 }

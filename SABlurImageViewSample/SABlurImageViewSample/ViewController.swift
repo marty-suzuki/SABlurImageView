@@ -10,7 +10,7 @@ import UIKit
 import SABlurImageView
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var slider: UISlider?
     @IBOutlet weak var animationButton: UIButton?
     @IBOutlet weak var applyButton: UIButton?
@@ -57,11 +57,10 @@ class ViewController: UIViewController {
     }
     
     func didChangeSliderValue(sender: UISlider) {
-        imageView?.blur(sender.value)
+        imageView?.blur(CGFloat(sender.value))
     }
     
     func didTapApplyButton(sender: UIButton) {
         imageView?.addBlurEffect(10, times: 1)
     }
 }
-

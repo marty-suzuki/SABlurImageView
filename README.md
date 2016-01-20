@@ -80,6 +80,12 @@ pod "SABlurImageView"
 - QuartzCore
 - Accelerate
 
+## Change Log
+
+### v2.0.0 -> v2.1.0
+
+Use `CGFloat`, instead of `Float`
+
 ## Author
 
 Taiki Suzuki, s1180183@gmail.com
