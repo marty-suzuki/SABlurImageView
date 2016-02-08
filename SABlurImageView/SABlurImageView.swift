@@ -15,7 +15,7 @@ public class SABlurImageView: UIImageView {
     private typealias AnimationFunction = Void -> ()
     
     //MARK: - Static Properties
-    static private let FadeAnimationKey = "Fade"
+    static private let FadeAnimationKey = "FadeAnimationKey"
     static private let MaxImageCount: Int = 10
     
     //MARK: - Instance Properties
@@ -148,7 +148,7 @@ public extension SABlurImageView {
     
     override public func animationDidStop(anim: CAAnimation, finished flag: Bool) {
         guard let _ = anim as? CATransition else { return }
-        layer.removeAllAnimations()
+        layer.removeAnimationForKey(self.dynamicType.FadeAnimationKey)
         guard let animation = animations?.first else {
             animations?.removeAll(keepCapacity: false)
             animations = nil
