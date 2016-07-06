@@ -11,11 +11,12 @@ import Foundation
 import QuartzCore
 
 public class SABlurImageView: UIImageView {
-    
-    private typealias AnimationFunction = (Void) -> ()
+    private struct AnimationKey {
+        static let fade = "FadeAnimationKey"
+        static let contents = "contents"
+    }
     
     //MARK: - Static Properties
-    static private let fadeAnimationKey = "FadeAnimationKey"
     static private let maxImageCount: Int = 10
     
     //MARK: - Instance Properties
@@ -23,7 +24,7 @@ public class SABlurImageView: UIImageView {
     private var nextBlurLayer: CALayer?
     private var previousImageIndex: Int = -1
     private var previousPercentage: CGFloat = 0.0
-    private var animations: [AnimationFunction]?
+    public private(set) var isBlurAnimating: Bool = false
     
     deinit {
         clearMemory()
@@ -37,10 +38,10 @@ public class SABlurImageView: UIImageView {
     
     public func configrationForBlurAnimation(_ boxSize: CGFloat = 100) {
         guard let image = image else { return }
-        let newBoxSize = max(min(boxSize, 200), 0)
-        let number = sqrt(CGFloat(newBoxSize)) / CGFloat(SABlurImageView.maxImageCount)
-        let cgImages = [image].flatMap { $0.cgImage }
-        self.cgImages = bluredCGImages(images: cgImages, sourceImage: image, at: 0, to: SABlurImageView.maxImageCount, baseNumber: number)
+        let baseBoxSize = max(min(boxSize, 200), 0)
+        let baseNumber = sqrt(CGFloat(baseBoxSize)) / CGFloat(SABlurImageView.maxImageCount)
+        let baseCGImages = [image].flatMap { $0.cgImage }
+        cgImages = bluredCGImages(images: baseCGImages, sourceImage: image, at: 0, to: SABlurImageView.maxImageCount, baseNumber: baseNumber)
     }
     
     private func bluredCGImages(images: [CGImage], sourceImage: UIImage?, at index: Int, to limit: Int, baseNumber: CGFloat) -> [CGImage] {
@@ -50,15 +51,12 @@ public class SABlurImageView: UIImageView {
         return bluredCGImages(images: newImages, sourceImage: newImage, at: index + 1, to: limit, baseNumber: baseNumber)
     }
     
-    
     public func clearMemory() {
         cgImages.removeAll(keepingCapacity: false)
         nextBlurLayer?.removeFromSuperlayer()
         nextBlurLayer = nil
         previousImageIndex = -1
         previousPercentage = 0.0
-        animations?.removeAll(keepingCapacity: false)
-        animations = nil
         layer.removeAllAnimations()
     }
 
@@ -114,38 +112,34 @@ public class SABlurImageView: UIImageView {
 
     //MARK: - Animation blur
     public func startBlurAnimation(duration: TimeInterval) {
-        let count = Double(cgImages.count)
-        animations = cgImages.map { cgImage in
-            return { [weak self] in
-                let transition = CATransition()
-                transition.duration = duration / count
-                transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-                transition.type = kCATransitionFade
-                transition.fillMode = kCAFillModeForwards
-                transition.repeatCount = 1
-                transition.isRemovedOnCompletion = false
-                transition.delegate = self
-                self?.layer.add(transition, forKey: SABlurImageView.fadeAnimationKey)
-                self?.layer.contents = cgImage
-            }
+        if isBlurAnimating { return }
+        isBlurAnimating = true
+        let count = cgImages.count
+        let group = CAAnimationGroup()
+        group.animations = cgImages.enumerated().flatMap {
+            guard $0.offset < count - 1 else { return nil }
+            let anim = CABasicAnimation(keyPath: AnimationKey.contents)
+            anim.fromValue = $0.element
+            anim.toValue = cgImages[$0.offset + 1]
+            anim.fillMode = kCAFillModeForwards
+            anim.isRemovedOnCompletion = false
+            anim.duration = duration / TimeInterval(count)
+            anim.beginTime = anim.duration * TimeInterval($0.offset)
+            return anim
         }
-        
-        if let animation = animations?.first {
-            animation()
-            let _ = animations?.removeFirst()
-        }
+        group.duration = duration
+        group.delegate = self
+        group.isRemovedOnCompletion = false
+        group.fillMode = kCAFillModeForwards
+        layer.add(group, forKey: AnimationKey.fade)
         cgImages = cgImages.reversed()
     }
     
     override public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard let _ = anim as? CATransition else { return }
-        layer.removeAnimation(forKey: SABlurImageView.fadeAnimationKey)
-        guard let animation = animations?.first else {
-            animations?.removeAll(keepingCapacity: false)
-            animations = nil
-            return
-        }
-        animation()
-        let _ = animations?.removeFirst()
+        guard let _ = anim as? CAAnimationGroup else { return }
+        layer.removeAnimation(forKey: AnimationKey.fade)
+        isBlurAnimating = false
+        guard let cgImage = cgImages.first else { return }
+        image = UIImage(cgImage: cgImage)
     }
 }
