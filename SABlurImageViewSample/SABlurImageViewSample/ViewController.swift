@@ -21,16 +21,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        animationButton?.addTarget(self, action: "didTapAnimationButton:", forControlEvents: .TouchUpInside)
-        slider?.addTarget(self, action: "didChangeSliderValue:", forControlEvents: .ValueChanged)
-        applyButton?.addTarget(self, action: "didTapApplyButton:", forControlEvents: .TouchUpInside)
+        animationButton?.addTarget(self, action: #selector(ViewController.didTapAnimationButton(_:)), for: .touchUpInside)
+        slider?.addTarget(self, action: #selector(ViewController.didChangeSliderValue(_:)), for: .valueChanged)
+        applyButton?.addTarget(self, action: #selector(ViewController.didTapApplyButton(_:)), for: .touchUpInside)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 1.0)
-        self.view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
+        view.window?.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -52,15 +52,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func didTapAnimationButton(sender: UIButton) {
+    func didTapAnimationButton(_ sender: UIButton) {
         imageView?.startBlurAnimation(duration: 2.0)
     }
     
-    func didChangeSliderValue(sender: UISlider) {
+    func didChangeSliderValue(_ sender: UISlider) {
         imageView?.blur(CGFloat(sender.value))
     }
     
-    func didTapApplyButton(sender: UIButton) {
+    func didTapApplyButton(_ sender: UIButton) {
         imageView?.addBlurEffect(10, times: 1)
     }
 }
