@@ -20,6 +20,7 @@ You can use blur effect and it's animation easily to call only two methods.
 - [x] Blur animation
 - [x] 0.0 to 1.0 parameter blur
 - [x] Support Swift2
+- [x] Support Swift2.3
 - [x] Support Swift3 (If you want to use it in Swift3, please use [3.0.0-beta](https://github.com/szk-atmosphere/SABlurImageView/tree/3.0.0-beta))
 
 ## Installation

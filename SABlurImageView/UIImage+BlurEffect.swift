@@ -35,7 +35,7 @@ extension CGImage {
         let width = vImagePixelCount(CGImageGetWidth(self))
         let rowBytes = CGImageGetBytesPerRow(self)
         
-        let inBitmapData = CGDataProviderCopyData(inProvider)
+        let inBitmapData = CGDataProviderCopyData(inProvider!)
         let inData = UnsafeMutablePointer<Void>(CFDataGetBytePtr(inBitmapData))
         var inBuffer = vImage_Buffer(data: inData, height: height, width: width, rowBytes: rowBytes)
         
@@ -46,7 +46,7 @@ extension CGImage {
         
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let context = CGBitmapContextCreate(outBuffer.data, Int(outBuffer.width), Int(outBuffer.height), 8, outBuffer.rowBytes, colorSpace, CGImageGetBitmapInfo(self).rawValue)
-        let imageRef = CGBitmapContextCreateImage(context)
+        let imageRef = CGBitmapContextCreateImage(context!)
         
         free(outData)
         

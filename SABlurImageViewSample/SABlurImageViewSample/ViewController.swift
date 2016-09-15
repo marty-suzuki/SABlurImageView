@@ -21,16 +21,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        animationButton?.addTarget(self, action: "didTapAnimationButton:", forControlEvents: .TouchUpInside)
-        slider?.addTarget(self, action: "didChangeSliderValue:", forControlEvents: .ValueChanged)
-        applyButton?.addTarget(self, action: "didTapApplyButton:", forControlEvents: .TouchUpInside)
+        animationButton?.addTarget(self, action: #selector(ViewController.didTapAnimationButton(_:)), forControlEvents: .TouchUpInside)
+        slider?.addTarget(self, action: #selector(ViewController.didChangeSliderValue(_:)), forControlEvents: .ValueChanged)
+        applyButton?.addTarget(self, action: #selector(ViewController.didTapApplyButton(_:)), forControlEvents: .TouchUpInside)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 1.0)
-        self.view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
+        view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
