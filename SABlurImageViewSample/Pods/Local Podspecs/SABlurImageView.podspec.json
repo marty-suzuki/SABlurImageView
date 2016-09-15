@@ -2,16 +2,16 @@
   "name": "SABlurImageView",
   "version": "3.0.0",
   "summary": "You can use blur effect and it's animation easily to call only two methods.",
-  "homepage": "https://github.com/szk-atmosphere/SABlurImageView",
+  "homepage": "https://github.com/marty-suzuki/SABlurImageView",
   "license": "MIT",
   "authors": {
     "Taiki Suzuki": "s1180183@gmail.com"
   },
   "source": {
-    "git": "https://github.com/szk-atmosphere/SABlurImageView.git",
+    "git": "https://github.com/marty-suzuki/SABlurImageView.git",
     "tag": "3.0.0"
   },
-  "social_media_url": "https://twitter.com/SzkAtmosphere",
+  "social_media_url": "https://twitter.com/marty_suzuki",
   "platforms": {
     "ios": "8.0"
   },

@@ -12,12 +12,12 @@ Pod::Spec.new do |s|
   s.version          = "3.0.0"
   s.summary          = "You can use blur effect and it's animation easily to call only two methods."
 
-  s.homepage         = "https://github.com/szk-atmosphere/SABlurImageView"
+  s.homepage         = "https://github.com/marty-suzuki/SABlurImageView"
 
   s.license          = 'MIT'
   s.author           = { "Taiki Suzuki" => "s1180183@gmail.com" }
-  s.source           = { :git => "https://github.com/szk-atmosphere/SABlurImageView.git", :tag => s.version.to_s }
-  s.social_media_url = 'https://twitter.com/SzkAtmosphere'
+  s.source           = { :git => "https://github.com/marty-suzuki/SABlurImageView.git", :tag => s.version.to_s }
+  s.social_media_url = 'https://twitter.com/marty_suzuki'
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true

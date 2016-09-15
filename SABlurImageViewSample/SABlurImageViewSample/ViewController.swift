@@ -15,12 +15,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var animationButton: UIButton?
     @IBOutlet weak var applyButton: UIButton?
     
-    private var imageView: SABlurImageView?
+    fileprivate var imageView: SABlurImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         animationButton?.addTarget(self, action: #selector(ViewController.didTapAnimationButton(_:)), for: .touchUpInside)
         slider?.addTarget(self, action: #selector(ViewController.didChangeSliderValue(_:)), for: .valueChanged)
         applyButton?.addTarget(self, action: #selector(ViewController.didTapApplyButton(_:)), for: .touchUpInside)
@@ -53,7 +52,7 @@ class ViewController: UIViewController {
     }
     
     func didTapAnimationButton(_ sender: UIButton) {
-        imageView?.startBlurAnimation(duration: 2.0)
+        imageView?.startBlurAnimation(2.0)
     }
     
     func didChangeSliderValue(_ sender: UISlider) {

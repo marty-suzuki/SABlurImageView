@@ -20,7 +20,8 @@ You can use blur effect and it's animation easily to call only two methods.
 - [x] Blur animation
 - [x] 0.0 to 1.0 parameter blur
 - [x] Support Swift2
-- [x] Support Swift3 (If you want to use it in Swift3, please use [3.0.0-beta](https://github.com/szk-atmosphere/SABlurImageView/tree/3.0.0-beta))
+- [x] Support Swift2.3
+- [x] Support Swift3
 
 ## Installation
 
@@ -29,7 +30,7 @@ You can use blur effect and it's animation easily to call only two methods.
 SABlurImageView is available through [CocoaPods](http://cocoapods.org). If you have cocoapods 0.38.0 or greater, you can install
 it, simply add the following line to your Podfile:
 
-    pod "SABlurImageView", :git => 'https://github.com/szk-atmosphere/SABlurImageView.git', :tag => '3.0.0-beta'
+    pod "SABlurImageView"
 
 #### Manually
 
