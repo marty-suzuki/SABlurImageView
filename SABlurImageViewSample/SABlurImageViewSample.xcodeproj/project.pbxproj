@@ -16,6 +16,7 @@
 		379345F21AC53698004544D8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379345F01AC53698004544D8 /* LaunchScreen.xib */; };
 		379345FE1AC53699004544D8 /* SABlurImageViewSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379345FD1AC53699004544D8 /* SABlurImageViewSampleTests.swift */; };
 		3793460F1AC54284004544D8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3793460E1AC54284004544D8 /* Accelerate.framework */; };
+		37F111E81DA40B93000EEF17 /* SampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F111E71DA40B93000EEF17 /* SampleViewController.m */; };
 		6AE2D7AD7C922D7709DF9545 /* Pods_SABlurImageViewSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37BD9032F85BBD4C619D9B2D /* Pods_SABlurImageViewSample.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,9 @@
 		379345FD1AC53699004544D8 /* SABlurImageViewSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABlurImageViewSampleTests.swift; sourceTree = "<group>"; };
 		3793460E1AC54284004544D8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		37BD9032F85BBD4C619D9B2D /* Pods_SABlurImageViewSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SABlurImageViewSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37F111E51DA40B93000EEF17 /* SABlurImageViewSample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SABlurImageViewSample-Bridging-Header.h"; sourceTree = "<group>"; };
+		37F111E61DA40B93000EEF17 /* SampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleViewController.h; sourceTree = "<group>"; };
+		37F111E71DA40B93000EEF17 /* SampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleViewController.m; sourceTree = "<group>"; };
 		83199A61B38AB107EC14B992 /* Pods-SABlurImageViewSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SABlurImageViewSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SABlurImageViewSample/Pods-SABlurImageViewSample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +108,9 @@
 			children = (
 				379345E71AC53698004544D8 /* AppDelegate.swift */,
 				379345E91AC53698004544D8 /* ViewController.swift */,
+				37F111E61DA40B93000EEF17 /* SampleViewController.h */,
+				37F111E71DA40B93000EEF17 /* SampleViewController.m */,
+				37F111E51DA40B93000EEF17 /* SABlurImageViewSample-Bridging-Header.h */,
 				379345EB1AC53698004544D8 /* Main.storyboard */,
 				379345EE1AC53698004544D8 /* Images.xcassets */,
 				379345F01AC53698004544D8 /* LaunchScreen.xib */,
@@ -302,6 +309,7 @@
 			files = (
 				379345EA1AC53698004544D8 /* ViewController.swift in Sources */,
 				379345E81AC53698004544D8 /* AppDelegate.swift in Sources */,
+				37F111E81DA40B93000EEF17 /* SampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,11 +436,14 @@
 			baseConfigurationReference = 1707F44C391EBA01B261F0B1 /* Pods-SABlurImageViewSample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SABlurImageViewSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "szk-atmosphere.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SABlurImageViewSample/SABlurImageViewSample-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -442,11 +453,13 @@
 			baseConfigurationReference = 83199A61B38AB107EC14B992 /* Pods-SABlurImageViewSample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SABlurImageViewSample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "szk-atmosphere.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SABlurImageViewSample/SABlurImageViewSample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 			};
