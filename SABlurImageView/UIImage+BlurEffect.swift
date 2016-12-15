@@ -12,7 +12,7 @@ import Accelerate
 
 extension UIImage {
     class func blurEffect(cgImage: CGImageRef, boxSize: CGFloat) -> UIImage! {
-        return UIImage(CGImage: cgImage.blurEffect(boxSize))
+        return UIImage(CGImage: (cgImage.blurEffect(boxSize) ?? cgImage))
     }
     
     func blurEffect(boxSize: CGFloat) -> UIImage! {
@@ -25,7 +25,7 @@ extension UIImage {
 }
 
 extension CGImage {
-    func blurEffect(boxSize: CGFloat) -> CGImageRef! {
+    func blurEffect(boxSize: CGFloat) -> CGImageRef? {
         
         let boxSize = boxSize - (boxSize % 2) + 1
         
@@ -45,8 +45,13 @@ extension CGImage {
         vImageBoxConvolve_ARGB8888(&inBuffer, &outBuffer, nil, 0, 0, UInt32(boxSize), UInt32(boxSize), nil, vImage_Flags(kvImageEdgeExtend))
         
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let context = CGBitmapContextCreate(outBuffer.data, Int(outBuffer.width), Int(outBuffer.height), 8, outBuffer.rowBytes, colorSpace, CGImageGetBitmapInfo(self).rawValue)
-        let imageRef = CGBitmapContextCreateImage(context!)
+        
+        guard let context = CGBitmapContextCreate(outBuffer.data, Int(outBuffer.width), Int(outBuffer.height), 8, outBuffer.rowBytes, colorSpace, CGImageGetBitmapInfo(self).rawValue) else {
+            free(outData)
+            return nil
+        }
+        
+        let imageRef = CGBitmapContextCreateImage(context)
         
         free(outData)
         
