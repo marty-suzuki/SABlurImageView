@@ -255,6 +255,14 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					05011663AA6F842A669A2AAB1D0A79A0 = {
+						LastSwiftMigration = 0800;
+					};
+					A8409CDD8FD86100DEDFA1907FC776C2 = {
+						LastSwiftMigration = 0800;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -379,6 +387,7 @@
 				PRODUCT_NAME = Pods_SABlurImageViewSample;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -425,7 +434,7 @@
 			};
 			name = Release;
 		};
-		AE87807687B6F22BB009DBD1E72C0EB0 /* Debug */ = {
+		7888A67C450FCE09E5974893549CC96E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7BA48DE839FD12FC07D229BF91E0D91 /* SABlurImageView.xcconfig */;
 			buildSettings = {
@@ -451,14 +460,14 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		CFCD26FC68B30E11653FA27203BA8D18 /* Release */ = {
+		9FD6A41932CB0DEE47F4666B759D8081 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B7BA48DE839FD12FC07D229BF91E0D91 /* SABlurImageView.xcconfig */;
 			buildSettings = {
@@ -483,7 +492,7 @@
 				PRODUCT_NAME = SABlurImageView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -520,6 +529,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -532,8 +542,8 @@
 		24AE481E8CCCC3DDA70E6C0E433C4996 /* Build configuration list for PBXNativeTarget "SABlurImageView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AE87807687B6F22BB009DBD1E72C0EB0 /* Debug */,
-				CFCD26FC68B30E11653FA27203BA8D18 /* Release */,
+				7888A67C450FCE09E5974893549CC96E /* Debug */,
+				9FD6A41932CB0DEE47F4666B759D8081 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

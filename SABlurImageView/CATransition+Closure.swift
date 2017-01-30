@@ -10,7 +10,7 @@ import UIKit
 import QuartzCore
 
 extension CATransaction {
-    class func animationWithDuration(duration: NSTimeInterval, @noescape animation: () -> Void) {
+    class func animationWithDuration(_ duration: TimeInterval, animation: () -> Void) {
         CATransaction.begin()
         CATransaction.setAnimationDuration(duration)
         animation()

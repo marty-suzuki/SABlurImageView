@@ -1,5 +1,5 @@
 PODS:
-  - SABlurImageView (2.1.1)
+  - SABlurImageView (3.0.0)
 
 DEPENDENCIES:
   - SABlurImageView (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SABlurImageView: 60fd7f18c20b4bb2bb6b1e4446464d6a480c5754
+  SABlurImageView: 7003ca28ded502c984846374a117f88a287d9faf
 
 PODFILE CHECKSUM: e384b53d4f242cae5136b9e1f48258ca80f20acb
 

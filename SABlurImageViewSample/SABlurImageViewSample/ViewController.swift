@@ -15,22 +15,21 @@ class ViewController: UIViewController {
     @IBOutlet weak var animationButton: UIButton?
     @IBOutlet weak var applyButton: UIButton?
     
-    private var imageView: SABlurImageView?
+    fileprivate var imageView: SABlurImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        animationButton?.addTarget(self, action: #selector(ViewController.didTapAnimationButton(_:)), forControlEvents: .TouchUpInside)
-        slider?.addTarget(self, action: #selector(ViewController.didChangeSliderValue(_:)), forControlEvents: .ValueChanged)
-        applyButton?.addTarget(self, action: #selector(ViewController.didTapApplyButton(_:)), forControlEvents: .TouchUpInside)
+        animationButton?.addTarget(self, action: #selector(ViewController.didTapAnimationButton(_:)), for: .touchUpInside)
+        slider?.addTarget(self, action: #selector(ViewController.didChangeSliderValue(_:)), for: .valueChanged)
+        applyButton?.addTarget(self, action: #selector(ViewController.didTapApplyButton(_:)), for: .touchUpInside)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         UIGraphicsBeginImageContextWithOptions(view.frame.size, false, 1.0)
-        view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
+        view.window?.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
@@ -52,15 +51,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func didTapAnimationButton(sender: UIButton) {
-        imageView?.startBlurAnimation(duration: 2.0)
+    func didTapAnimationButton(_ sender: UIButton) {
+        imageView?.startBlurAnimation(2.0)
     }
     
-    func didChangeSliderValue(sender: UISlider) {
+    func didChangeSliderValue(_ sender: UISlider) {
         imageView?.blur(CGFloat(sender.value))
     }
     
-    func didTapApplyButton(sender: UIButton) {
+    func didTapApplyButton(_ sender: UIButton) {
         imageView?.addBlurEffect(10, times: 1)
     }
 }

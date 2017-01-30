@@ -21,7 +21,7 @@ You can use blur effect and it's animation easily to call only two methods.
 - [x] 0.0 to 1.0 parameter blur
 - [x] Support Swift2
 - [x] Support Swift2.3
-- [x] Support Swift3 (If you want to use it in Swift3, please use [3.0.0-beta](https://github.com/szk-atmosphere/SABlurImageView/tree/3.0.0-beta))
+- [x] Support Swift3
 
 ## Installation
 
@@ -36,7 +36,7 @@ it, simply add the following line to your Podfile:
 
 Add the [SABlurImageView](./SABlurImageView) directory to your project.
 
-## Usage
+## Usage In Swift
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
@@ -45,16 +45,16 @@ If you install from pod, you have to write `import SABlurImageView`.
 If you want to apply blur effect for image
 
 ```swift
-	let imageView = SABlurImageView(image: image)
-	imageView.addBlurEffect(30, times: 1)
+let imageView = SABlurImageView(image: image)
+imageView.addBlurEffect(30, times: 1)
 ```
 
 If you want to animate
 
 ```swift
-	let imageView = SABlurImageView(image: image)
-	imageView.configrationForBlurAnimation()
-	imageView.startBlurAnimation(duration: 2.0)
+let imageView = SABlurImageView(image: image)
+imageView.configrationForBlurAnimation()
+imageView.startBlurAnimation(duration: 2.0)
 ```
 
 First time of blur animation is normal to blur. Second time is blur to normal. (automatically set configration of reverse animation)
@@ -62,23 +62,46 @@ First time of blur animation is normal to blur. Second time is blur to normal. (
 If you want to use 0.0 to 1.0 parameter
 
 ```swift
-	let imageView = SABlurImageView(image: image)
-	imageView.configrationForBlurAnimation(100)
-	imageView?.blur(0.5)
+let imageView = SABlurImageView(image: image)
+imageView.configrationForBlurAnimation(100)
+imageView?.blur(0.5)
 ```
 
-## Installation
+## Usage In Objective-C
 
-SABlurImageView is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+You can use `SABlurImageView` in Objective-C!
 
-```ruby
-pod "SABlurImageView"
+If you install from pod, you have to write `#import <SABlurImageView/SABlurImageView-Swift.h>` in `.m`.
+
+If you want to apply blur effect for image
+
+```objc
+SABlurImageView *imageView = [[SABlurImageView alloc] initWithImage:image];
+[imageView addBlurEffect:30.0f times:1];
 ```
+
+If you want to animate
+
+```objc
+SABlurImageView *imageView = [[SABlurImageView alloc] initWithImage:image];
+[imageView configrationForBlurAnimation:100.0f];
+[imageView startBlurAnimation:2.0f];
+```
+
+First time of blur animation is normal to blur. Second time is blur to normal. (automatically set configration of reverse animation)
+
+If you want to use 0.0 to 1.0 parameter
+
+```objc
+SABlurImageView *imageView = [[SABlurImageView alloc] initWithImage:image];
+[imageView configrationForBlurAnimation:100.0f];
+[imageView blur:0.5f];
+```
+
 ## Requirements
 
-- Xcode 7.0 or greater
-- iOS7.0(manually only) or greater
+- Xcode 8.0 or greater
+- iOS 8.0 or greater
 - QuartzCore
 - Accelerate
 
@@ -91,10 +114,6 @@ Use `CGFloat`, instead of `Float`
 ## Author
 
 Taiki Suzuki, s1180183@gmail.com
-
-## Other
-
-Objective-C version of this project is [SABlurImageViewObjc](https://github.com/szk-atmosphere/SABlurImageViewObjc).
 
 ## License
 
