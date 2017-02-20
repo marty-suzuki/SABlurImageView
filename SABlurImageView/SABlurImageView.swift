@@ -66,7 +66,8 @@ open class SABlurImageView: UIImageView {
     }
     
     fileprivate func addBlurEffectTo(_ image: UIImage, boxSize: CGFloat, remainTimes: UInt) -> UIImage {
-        return remainTimes > 0 ? addBlurEffectTo(image.blurEffect(boxSize), boxSize: boxSize, remainTimes: remainTimes - 1) : image
+        guard let blurImage = image.blurEffect(boxSize) else { return image }
+        return remainTimes > 0 ? addBlurEffectTo(blurImage, boxSize: boxSize, remainTimes: remainTimes - 1) : image
     }
 
     //MARK: - Percentage blur

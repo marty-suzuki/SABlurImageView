@@ -11,21 +11,22 @@ import QuartzCore
 import Accelerate
 
 extension UIImage {
-    class func blurEffect(_ cgImage: CGImage, boxSize: CGFloat) -> UIImage! {
-        return UIImage(cgImage: cgImage.blurEffect(boxSize))
+    class func blurEffect(_ cgImage: CGImage, boxSize: CGFloat) -> UIImage? {
+        return UIImage(cgImage: (cgImage.blurEffect(boxSize) ?? cgImage))
     }
     
-    func blurEffect(_ boxSize: CGFloat) -> UIImage! {
-        return UIImage(cgImage: bluredCGImage(boxSize))
+    func blurEffect(_ boxSize: CGFloat) -> UIImage? {
+        guard let imageRef = bluredCGImage(boxSize) else { return nil }
+        return UIImage(cgImage: imageRef)
     }
     
-    func bluredCGImage(_ boxSize: CGFloat) -> CGImage! {
-        return cgImage!.blurEffect(boxSize)
+    func bluredCGImage(_ boxSize: CGFloat) -> CGImage? {
+        return cgImage?.blurEffect(boxSize)
     }
 }
 
 extension CGImage {
-    func blurEffect(_ boxSize: CGFloat) -> CGImage! {
+    func blurEffect(_ boxSize: CGFloat) -> CGImage? {
         
         let boxSize = boxSize - (boxSize.truncatingRemainder(dividingBy: 2)) + 1
         
