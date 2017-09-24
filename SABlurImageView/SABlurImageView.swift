@@ -12,18 +12,18 @@ import QuartzCore
 
 open class SABlurImageView: UIImageView {
     //MARK: - Static Properties
-    fileprivate struct Const {
+    private struct Const {
         static let fadeAnimationKey = "FadeAnimationKey"
         static let maxImageCount: Int = 10
         static let contentsAnimationKey = "contents"
     }
     
     //MARK: - Instance Properties
-    fileprivate var cgImages: [CGImage] = [CGImage]()
-    fileprivate var nextBlurLayer: CALayer?
-    fileprivate var previousImageIndex: Int = -1
-    fileprivate var previousPercentage: CGFloat = 0.0
-    open fileprivate(set) var isBlurAnimating: Bool = false
+    private var cgImages: [CGImage] = [CGImage]()
+    private var nextBlurLayer: CALayer?
+    private var previousImageIndex: Int = -1
+    private var previousPercentage: CGFloat = 0.0
+    open private(set) var isBlurAnimating: Bool = false
     
     deinit {
         clearMemory()
@@ -35,7 +35,7 @@ open class SABlurImageView: UIImageView {
         nextBlurLayer?.frame = bounds
     }
     
-    open func configrationForBlurAnimation(_ boxSize: CGFloat = 100) {
+    @objc open func configrationForBlurAnimation(_ boxSize: CGFloat = 100) {
         guard let image = image else { return }
         let baseBoxSize = max(min(boxSize, 200), 0)
         let baseNumber = sqrt(CGFloat(baseBoxSize)) / CGFloat(Const.maxImageCount)
@@ -43,14 +43,14 @@ open class SABlurImageView: UIImageView {
         cgImages = bluredCGImages(baseCGImages, sourceImage: image, at: 0, to: Const.maxImageCount, baseNumber: baseNumber)
     }
     
-    fileprivate func bluredCGImages(_ images: [CGImage], sourceImage: UIImage?, at index: Int, to limit: Int, baseNumber: CGFloat) -> [CGImage] {
+    private func bluredCGImages(_ images: [CGImage], sourceImage: UIImage?, at index: Int, to limit: Int, baseNumber: CGFloat) -> [CGImage] {
         guard index < limit else { return images }
         let newImage = sourceImage?.blurEffect(pow(CGFloat(index) * baseNumber, 2))
         let newImages = images + [newImage].flatMap { $0?.cgImage }
         return bluredCGImages(newImages, sourceImage: newImage, at: index + 1, to: limit, baseNumber: baseNumber)
     }
     
-    open func clearMemory() {
+    @objc open func clearMemory() {
         cgImages.removeAll(keepingCapacity: false)
         nextBlurLayer?.removeFromSuperlayer()
         nextBlurLayer = nil
@@ -60,18 +60,18 @@ open class SABlurImageView: UIImageView {
     }
 
     //MARK: - Add single blur
-    open func addBlurEffect(_ boxSize: CGFloat, times: UInt = 1) {
+    @objc open func addBlurEffect(_ boxSize: CGFloat, times: UInt = 1) {
         guard let image = image else { return }
         self.image = addBlurEffectTo(image, boxSize: boxSize, remainTimes: times)
     }
     
-    fileprivate func addBlurEffectTo(_ image: UIImage, boxSize: CGFloat, remainTimes: UInt) -> UIImage {
+    private func addBlurEffectTo(_ image: UIImage, boxSize: CGFloat, remainTimes: UInt) -> UIImage {
         guard let blurImage = image.blurEffect(boxSize) else { return image }
         return remainTimes > 0 ? addBlurEffectTo(blurImage, boxSize: boxSize, remainTimes: remainTimes - 1) : image
     }
 
     //MARK: - Percentage blur
-    open func blur(_ percentage: CGFloat) {
+    @objc open func blur(_ percentage: CGFloat) {
         let percentage = min(max(percentage, 0.0), 0.99)
         if previousPercentage - percentage  > 0 {
             let index = Int(floor(percentage * 10)) + 1
@@ -87,7 +87,7 @@ open class SABlurImageView: UIImageView {
         previousPercentage = percentage
     }
     
-    fileprivate func setLayers(_ index: Int, percentage: CGFloat, currentIndex: Int, nextIndex: Int) {
+    private func setLayers(_ index: Int, percentage: CGFloat, currentIndex: Int, nextIndex: Int) {
         if index != previousImageIndex {
             CATransaction.animationWithDuration(0) { layer.contents = self.cgImages[currentIndex] }
             
@@ -111,7 +111,7 @@ open class SABlurImageView: UIImageView {
     }
 
     //MARK: - Animation blur
-    open func startBlurAnimation(_ duration: TimeInterval) {
+    @objc open func startBlurAnimation(_ duration: TimeInterval) {
         if isBlurAnimating { return }
         isBlurAnimating = true
         let count = cgImages.count

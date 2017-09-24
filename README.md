@@ -19,9 +19,7 @@ You can use blur effect and it's animation easily to call only two methods.
 - [x] Blur effect with box size
 - [x] Blur animation
 - [x] 0.0 to 1.0 parameter blur
-- [x] Support Swift2
-- [x] Support Swift2.3
-- [x] Support Swift3
+- [x] Support Swift4
 
 ## Installation
 
@@ -100,7 +98,7 @@ SABlurImageView *imageView = [[SABlurImageView alloc] initWithImage:image];
 
 ## Requirements
 
-- Xcode 8.0 or greater
+- Xcode 9 or greater
 - iOS 8.0 or greater
 - QuartzCore
 - Accelerate
