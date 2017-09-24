@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var animationButton: UIButton?
     @IBOutlet weak var applyButton: UIButton?
     
-    fileprivate var imageView: SABlurImageView?
+    private var imageView: SABlurImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,15 +51,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func didTapAnimationButton(_ sender: UIButton) {
+    @objc func didTapAnimationButton(_ sender: UIButton) {
         imageView?.startBlurAnimation(2.0)
     }
     
-    func didChangeSliderValue(_ sender: UISlider) {
+    @objc func didChangeSliderValue(_ sender: UISlider) {
         imageView?.blur(CGFloat(sender.value))
     }
     
-    func didTapApplyButton(_ sender: UIButton) {
+    @objc func didTapApplyButton(_ sender: UIButton) {
         imageView?.addBlurEffect(10, times: 1)
     }
 }
