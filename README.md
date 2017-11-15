@@ -6,6 +6,7 @@
 )](https://developer.apple.com/swift)
 [![Version](https://img.shields.io/cocoapods/v/SABlurImageView.svg?style=flat)](http://cocoapods.org/pods/SABlurImageView)
 [![License](https://img.shields.io/cocoapods/l/SABlurImageView.svg?style=flat)](http://cocoapods.org/pods/SABlurImageView)
+[![CocoaPods](https://img.shields.io/cocoapods/dt/SABlurImageView.svg)](https://cocoapods.org/?q=SABlurImageView)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ![](./SampleImage/sample.gif)
