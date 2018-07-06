@@ -6,10 +6,18 @@
 //  Copyright (c) 2015年 鈴木大貴. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
+public typealias ImageView = UIImageView
+public typealias Image = UIImage
+#elseif os(macOS)
+import AppKit
+public typealias ImageView = NSImageView
+public typealias Image = NSImage
+#endif
 import QuartzCore
 
-@objc open class SABlurImageView: UIImageView {
+@objc open class SABlurImageView: ImageView {
     //MARK: - Static Properties
     private struct Const {
         static let fadeAnimationKey = "FadeAnimationKey"
@@ -23,29 +31,47 @@ import QuartzCore
     private var previousImageIndex: Int = -1
     private var previousPercentage: CGFloat = 0.0
     @objc open private(set) var isBlurAnimating: Bool = false
-    
+
+    private var _layer: CALayer {
+        #if os(iOS) || os(tvOS)
+        return layer
+        #elseif os(macOS)
+        wantsLayer = true
+        return layer!
+        #endif
+    }
+
     deinit {
         clearMemory()
     }
 
     //MARK: - Life Cycle
+    #if os(iOS) || os(tvOS)
     open override func layoutSubviews() {
         super.layoutSubviews()
         nextBlurLayer?.frame = bounds
     }
+    #elseif os(macOS)
+    open override func resizeSubviews(withOldSize oldSize: NSSize) {
+        super.resizeSubviews(withOldSize: oldSize)
+        nextBlurLayer?.frame = bounds
+    }
+    #endif
     
     @objc open func configrationForBlurAnimation(_ boxSize: CGFloat = 100) {
         guard let image = image else { return }
         let baseBoxSize = max(min(boxSize, 200), 0)
         let baseNumber = sqrt(CGFloat(baseBoxSize)) / CGFloat(Const.maxImageCount)
-        let baseCGImages = [image].compactMap { $0.cgImage }
+        let baseCGImages = [image].compactMap {
+            $0.toCGImage()
+        }
         cgImages = bluredCGImages(baseCGImages, sourceImage: image, at: 0, to: Const.maxImageCount, baseNumber: baseNumber)
     }
     
-    private func bluredCGImages(_ images: [CGImage], sourceImage: UIImage?, at index: Int, to limit: Int, baseNumber: CGFloat) -> [CGImage] {
+    private func bluredCGImages(_ images: [CGImage], sourceImage: Image?, at index: Int, to limit: Int, baseNumber: CGFloat) -> [CGImage] {
         guard index < limit else { return images }
         let newImage = sourceImage?.blurEffect(pow(CGFloat(index) * baseNumber, 2))
-        let newImages = images + [newImage].compactMap { $0?.cgImage }
+        let newImages = images + [newImage].compactMap { $0?.toCGImage() }
         return bluredCGImages(newImages, sourceImage: newImage, at: index + 1, to: limit, baseNumber: baseNumber)
     }
     
@@ -55,7 +81,7 @@ import QuartzCore
         nextBlurLayer = nil
         previousImageIndex = -1
         previousPercentage = 0.0
-        layer.removeAllAnimations()
+        _layer.removeAllAnimations()
     }
 
     //MARK: - Add single blur
@@ -64,7 +90,7 @@ import QuartzCore
         self.image = addBlurEffectTo(image, boxSize: boxSize, remainTimes: times)
     }
     
-    private func addBlurEffectTo(_ image: UIImage, boxSize: CGFloat, remainTimes: UInt) -> UIImage {
+    private func addBlurEffectTo(_ image: Image, boxSize: CGFloat, remainTimes: UInt) -> Image {
         guard let blurImage = image.blurEffect(boxSize) else { return image }
         return remainTimes > 0 ? addBlurEffectTo(blurImage, boxSize: boxSize, remainTimes: remainTimes - 1) : image
     }
@@ -88,12 +114,12 @@ import QuartzCore
     
     private func setLayers(_ index: Int, percentage: CGFloat, currentIndex: Int, nextIndex: Int) {
         if index != previousImageIndex {
-            CATransaction.animationWithDuration(0) { layer.contents = self.cgImages[currentIndex] }
+            CATransaction.animationWithDuration(0) { _layer.contents = self.cgImages[currentIndex] }
             
             if nextBlurLayer == nil {
                 let nextBlurLayer = CALayer()
                 nextBlurLayer.frame = bounds
-                layer.addSublayer(nextBlurLayer)
+                _layer.addSublayer(nextBlurLayer)
                 self.nextBlurLayer = nextBlurLayer
             }
             
@@ -130,7 +156,7 @@ import QuartzCore
         group.delegate = self
         group.isRemovedOnCompletion = false
         group.fillMode = kCAFillModeForwards
-        layer.add(group, forKey: Const.fadeAnimationKey)
+        _layer.add(group, forKey: Const.fadeAnimationKey)
         cgImages = cgImages.reversed()
     }
 }
@@ -138,9 +164,13 @@ import QuartzCore
 extension SABlurImageView: CAAnimationDelegate {
     open func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         guard let _ = anim as? CAAnimationGroup else { return }
-        layer.removeAnimation(forKey: Const.fadeAnimationKey)
+        _layer.removeAnimation(forKey: Const.fadeAnimationKey)
         isBlurAnimating = false
         guard let cgImage = cgImages.first else { return }
+        #if os(iOS) || os(tvOS)
         image = UIImage(cgImage: cgImage)
+        #elseif os(macOS)
+        image = NSImage(cgImage: cgImage, size: bounds.size)
+        #endif
     }
 }

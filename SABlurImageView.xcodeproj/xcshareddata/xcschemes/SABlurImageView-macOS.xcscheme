@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "37CEA14120EFEA1000B546CA"
+               BlueprintIdentifier = "37CEA15120EFEB1A00B546CA"
                BuildableName = "SABlurImageView.framework"
-               BlueprintName = "SABlurImageView-tvOS"
+               BlueprintName = "SABlurImageView-macOS"
                ReferencedContainer = "container:SABlurImageView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "37CEA14120EFEA1000B546CA"
+            BlueprintIdentifier = "37CEA15120EFEB1A00B546CA"
             BuildableName = "SABlurImageView.framework"
-            BlueprintName = "SABlurImageView-tvOS"
+            BlueprintName = "SABlurImageView-macOS"
             ReferencedContainer = "container:SABlurImageView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "37CEA14120EFEA1000B546CA"
+            BlueprintIdentifier = "37CEA15120EFEB1A00B546CA"
             BuildableName = "SABlurImageView.framework"
-            BlueprintName = "SABlurImageView-tvOS"
+            BlueprintName = "SABlurImageView-macOS"
             ReferencedContainer = "container:SABlurImageView.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

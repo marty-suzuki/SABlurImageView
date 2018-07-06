@@ -6,7 +6,13 @@
 //  Copyright © 2018年 marty-suzuki. All rights reserved.
 //
 
+#import "TargetConditionals.h"
+
+#if TARGET_OS_OSX
+#import <AppKit/AppKit.h>
+#else
 #import <UIKit/UIKit.h>
+#endif
 
 //! Project version number for SABlurImageView.
 FOUNDATION_EXPORT double SABlurImageViewVersionNumber;
