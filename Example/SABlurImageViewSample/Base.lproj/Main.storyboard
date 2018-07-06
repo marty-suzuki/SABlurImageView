@@ -153,7 +153,7 @@
                                     <constraint firstAttribute="height" constant="50" id="8mN-qC-64I"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <state key="normal" title="Aniamtion">
+                                <state key="normal" title="Animation">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
