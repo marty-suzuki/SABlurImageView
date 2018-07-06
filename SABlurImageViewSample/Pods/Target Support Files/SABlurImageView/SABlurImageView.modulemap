@@ -1,6 +1,0 @@
-framework module SABlurImageView {
-  umbrella header "SABlurImageView-umbrella.h"
-
-  export *
-  module * { export * }
-}

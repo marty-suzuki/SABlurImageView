@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "SABlurImageView"
-  s.version          = "4.0.0"
+  s.version          = "5.0.0"
   s.summary          = "You can use blur effect and it's animation easily to call only two methods."
 
   s.homepage         = "https://github.com/marty-suzuki/SABlurImageView"
@@ -19,15 +19,13 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/marty-suzuki/SABlurImageView.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/marty_suzuki'
 
-  s.platform     = :ios, '8.0'
-  s.requires_arc = true
+  s.ios.frameworks   = 'UIKit', 'QuartzCore', 'Accelerate'
+  s.tvos.frameworks  = 'UIKit', 'QuartzCore', 'Accelerate'
+  s.macos.frameworks = 'AppKit', 'QuartzCore', 'Accelerate'
 
-  s.source_files = 'SABlurImageView/*.{swift}'
-  # s.resource_bundles = {
-  #   'SABlurImageView' => ['Pod/Assets/*.png']
-  # }
+  s.ios.deployment_target   = '8.0'
+  s.tvos.deployment_target  = '9.0'
+  s.macos.deployment_target = '10.9'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  s.frameworks = 'UIKit', 'QuartzCore', 'Accelerate'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.source_files = 'Sources/**/*.{swift}'
 end
