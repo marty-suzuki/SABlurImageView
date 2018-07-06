@@ -14,6 +14,11 @@
 		37CEA10020EFE64D00B546CA /* UIImage+BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CEA0FB20EFE64D00B546CA /* UIImage+BlurEffect.swift */; };
 		37CEA10120EFE64D00B546CA /* SABlurImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37CEA0FC20EFE64D00B546CA /* SABlurImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37CEA14020EFE7CB00B546CA /* Gap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CEA13F20EFE7CB00B546CA /* Gap.swift */; };
+		37CEA14320EFEA1000B546CA /* Gap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CEA13F20EFE7CB00B546CA /* Gap.swift */; };
+		37CEA14420EFEA1000B546CA /* CATransition+Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CEA0F920EFE64D00B546CA /* CATransition+Closure.swift */; };
+		37CEA14520EFEA1000B546CA /* UIImage+BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CEA0FB20EFE64D00B546CA /* UIImage+BlurEffect.swift */; };
+		37CEA14620EFEA1000B546CA /* SABlurImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37CEA0FA20EFE64D00B546CA /* SABlurImageView.swift */; };
+		37CEA14920EFEA1000B546CA /* SABlurImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 37CEA0FC20EFE64D00B546CA /* SABlurImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,12 +36,14 @@
 		37CEA0E520EFE61100B546CA /* SABlurImageViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SABlurImageViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37CEA0EA20EFE61100B546CA /* SABlurImageViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SABlurImageViewTests.swift; sourceTree = "<group>"; };
 		37CEA0EC20EFE61100B546CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		37CEA0F720EFE64D00B546CA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		37CEA0F720EFE64D00B546CA /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
 		37CEA0F920EFE64D00B546CA /* CATransition+Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CATransition+Closure.swift"; sourceTree = "<group>"; };
 		37CEA0FA20EFE64D00B546CA /* SABlurImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SABlurImageView.swift; sourceTree = "<group>"; };
 		37CEA0FB20EFE64D00B546CA /* UIImage+BlurEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+BlurEffect.swift"; sourceTree = "<group>"; };
 		37CEA0FC20EFE64D00B546CA /* SABlurImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SABlurImageView.h; sourceTree = "<group>"; };
 		37CEA13F20EFE7CB00B546CA /* Gap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gap.swift; sourceTree = "<group>"; };
+		37CEA14E20EFEA1000B546CA /* SABlurImageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SABlurImageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		37CEA15020EFEA4A00B546CA /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +59,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				37CEA0E620EFE61100B546CA /* SABlurImageView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37CEA14720EFEA1000B546CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +86,7 @@
 			children = (
 				37CEA0DC20EFE61100B546CA /* SABlurImageView.framework */,
 				37CEA0E520EFE61100B546CA /* SABlurImageViewTests.xctest */,
+				37CEA14E20EFEA1000B546CA /* SABlurImageView.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,7 +103,8 @@
 		37CEA0F620EFE64D00B546CA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				37CEA0F720EFE64D00B546CA /* Info.plist */,
+				37CEA0F720EFE64D00B546CA /* Info-iOS.plist */,
+				37CEA15020EFEA4A00B546CA /* Info-tvOS.plist */,
 				37CEA0F820EFE64D00B546CA /* SABlurImageView */,
 				37CEA0FC20EFE64D00B546CA /* SABlurImageView.h */,
 			);
@@ -117,12 +133,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		37CEA14820EFEA1000B546CA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37CEA14920EFEA1000B546CA /* SABlurImageView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		37CEA0DB20EFE61100B546CA /* SABlurImageView */ = {
+		37CEA0DB20EFE61100B546CA /* SABlurImageView-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 37CEA0F020EFE61100B546CA /* Build configuration list for PBXNativeTarget "SABlurImageView" */;
+			buildConfigurationList = 37CEA0F020EFE61100B546CA /* Build configuration list for PBXNativeTarget "SABlurImageView-iOS" */;
 			buildPhases = (
 				37CEA0D720EFE61100B546CA /* Sources */,
 				37CEA0D820EFE61100B546CA /* Frameworks */,
@@ -133,7 +157,7 @@
 			);
 			dependencies = (
 			);
-			name = SABlurImageView;
+			name = "SABlurImageView-iOS";
 			productName = SABlurImageView;
 			productReference = 37CEA0DC20EFE61100B546CA /* SABlurImageView.framework */;
 			productType = "com.apple.product-type.framework";
@@ -155,6 +179,24 @@
 			productName = SABlurImageViewTests;
 			productReference = 37CEA0E520EFE61100B546CA /* SABlurImageViewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		37CEA14120EFEA1000B546CA /* SABlurImageView-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 37CEA14B20EFEA1000B546CA /* Build configuration list for PBXNativeTarget "SABlurImageView-tvOS" */;
+			buildPhases = (
+				37CEA14220EFEA1000B546CA /* Sources */,
+				37CEA14720EFEA1000B546CA /* Frameworks */,
+				37CEA14820EFEA1000B546CA /* Headers */,
+				37CEA14A20EFEA1000B546CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SABlurImageView-tvOS";
+			productName = SABlurImageView;
+			productReference = 37CEA14E20EFEA1000B546CA /* SABlurImageView.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -186,7 +228,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				37CEA0DB20EFE61100B546CA /* SABlurImageView */,
+				37CEA0DB20EFE61100B546CA /* SABlurImageView-iOS */,
+				37CEA14120EFEA1000B546CA /* SABlurImageView-tvOS */,
 				37CEA0E420EFE61100B546CA /* SABlurImageViewTests */,
 			);
 		};
@@ -201,6 +244,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		37CEA0E320EFE61100B546CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		37CEA14A20EFEA1000B546CA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -229,12 +279,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		37CEA14220EFEA1000B546CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37CEA14320EFEA1000B546CA /* Gap.swift in Sources */,
+				37CEA14420EFEA1000B546CA /* CATransition+Closure.swift in Sources */,
+				37CEA14520EFEA1000B546CA /* UIImage+BlurEffect.swift in Sources */,
+				37CEA14620EFEA1000B546CA /* SABlurImageView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		37CEA0E820EFE61100B546CA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 37CEA0DB20EFE61100B546CA /* SABlurImageView */;
+			target = 37CEA0DB20EFE61100B546CA /* SABlurImageView-iOS */;
 			targetProxy = 37CEA0E720EFE61100B546CA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -370,7 +431,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -379,7 +440,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.SABlurImageView";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = SABlurImageView;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -397,7 +458,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info-iOS.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -406,7 +467,7 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.SABlurImageView";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = SABlurImageView;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -450,6 +511,64 @@
 			};
 			name = Release;
 		};
+		37CEA14C20EFEA1000B546CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info-tvOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.SABlurImageView";
+				PRODUCT_NAME = SABlurImageView;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		37CEA14D20EFEA1000B546CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info-tvOS.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.SABlurImageView";
+				PRODUCT_NAME = SABlurImageView;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -462,7 +581,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		37CEA0F020EFE61100B546CA /* Build configuration list for PBXNativeTarget "SABlurImageView" */ = {
+		37CEA0F020EFE61100B546CA /* Build configuration list for PBXNativeTarget "SABlurImageView-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				37CEA0F120EFE61100B546CA /* Debug */,
@@ -476,6 +595,15 @@
 			buildConfigurations = (
 				37CEA0F420EFE61100B546CA /* Debug */,
 				37CEA0F520EFE61100B546CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		37CEA14B20EFEA1000B546CA /* Build configuration list for PBXNativeTarget "SABlurImageView-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				37CEA14C20EFEA1000B546CA /* Debug */,
+				37CEA14D20EFEA1000B546CA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
