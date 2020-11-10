@@ -51,6 +51,7 @@
 		37CEA15020EFEA4A00B546CA /* Info-tvOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
 		37CEA15E20EFEB1A00B546CA /* SABlurImageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SABlurImageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		37CEA16020EFEB5800B546CA /* Info-macOS.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-macOS.plist"; sourceTree = "<group>"; };
+		ED5E67B8255AF8740028CC81 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +90,7 @@
 		37CEA0D220EFE61100B546CA = {
 			isa = PBXGroup;
 			children = (
+				ED5E67B7255AF8740028CC81 /* Configs */,
 				37CEA0F620EFE64D00B546CA /* Sources */,
 				37CEA0E920EFE61100B546CA /* SABlurImageViewTests */,
 				37CEA0DD20EFE61100B546CA /* Products */,
@@ -136,6 +138,14 @@
 				37CEA13F20EFE7CB00B546CA /* Gap.swift */,
 			);
 			path = SABlurImageView;
+			sourceTree = "<group>";
+		};
+		ED5E67B7255AF8740028CC81 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				ED5E67B8255AF8740028CC81 /* Base.xcconfig */,
+			);
+			path = Configs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,6 +494,7 @@
 		};
 		37CEA0F120EFE61100B546CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5E67B8255AF8740028CC81 /* Base.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -504,13 +515,13 @@
 				PRODUCT_NAME = SABlurImageView;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		37CEA0F220EFE61100B546CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5E67B8255AF8740028CC81 /* Base.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -531,13 +542,13 @@
 				PRODUCT_NAME = SABlurImageView;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		37CEA0F420EFE61100B546CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5E67B8255AF8740028CC81 /* Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -549,13 +560,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.SABlurImageViewTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		37CEA0F520EFE61100B546CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5E67B8255AF8740028CC81 /* Base.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -567,13 +578,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.SABlurImageViewTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		37CEA14C20EFEA1000B546CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5E67B8255AF8740028CC81 /* Base.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -595,7 +606,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -603,6 +613,7 @@
 		};
 		37CEA14D20EFEA1000B546CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5E67B8255AF8740028CC81 /* Base.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -624,7 +635,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -632,6 +642,7 @@
 		};
 		37CEA15C20EFEB1A00B546CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5E67B8255AF8740028CC81 /* Base.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -654,13 +665,13 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		37CEA15D20EFEB1A00B546CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5E67B8255AF8740028CC81 /* Base.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Manual;
@@ -683,7 +694,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

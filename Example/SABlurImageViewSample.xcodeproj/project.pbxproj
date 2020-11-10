@@ -28,6 +28,7 @@
 		37CEA12A20EFE70800B546CA /* SampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleViewController.m; sourceTree = "<group>"; };
 		37CEA12B20EFE70800B546CA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		37CEA13D20EFE78000B546CA /* SABlurImageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SABlurImageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED5E67D0255AF8990028CC81 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +46,7 @@
 		37CEA10220EFE6A200B546CA = {
 			isa = PBXGroup;
 			children = (
+				ED5E67CF255AF8990028CC81 /* Configs */,
 				37CEA12020EFE70800B546CA /* SABlurImageViewSample */,
 				37CEA10C20EFE6A200B546CA /* Products */,
 				37CEA13C20EFE78000B546CA /* Frameworks */,
@@ -81,6 +83,15 @@
 				37CEA13D20EFE78000B546CA /* SABlurImageView.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED5E67CF255AF8990028CC81 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				ED5E67D0255AF8990028CC81 /* Common.xcconfig */,
+			);
+			name = Configs;
+			path = ../Configs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +309,7 @@
 		};
 		37CEA11E20EFE6A300B546CA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5E67D0255AF8990028CC81 /* Common.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -311,13 +323,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.SABlurImageViewSample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		37CEA11F20EFE6A300B546CA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED5E67D0255AF8990028CC81 /* Common.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -331,7 +343,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.marty-suzuki.SABlurImageViewSample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

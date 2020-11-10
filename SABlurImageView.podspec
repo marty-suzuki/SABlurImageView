@@ -8,8 +8,11 @@
 #
 
 Pod::Spec.new do |s|
+  last_commit = `git rev-list --tags --max-count=1`.strip
+  last_tag = `git describe --tags #{last_commit}`.strip
+
   s.name             = "SABlurImageView"
-  s.version          = "5.0.0"
+  s.version          = last_tag
   s.summary          = "You can use blur effect and it's animation easily to call only two methods."
 
   s.homepage         = "https://github.com/marty-suzuki/SABlurImageView"
@@ -28,4 +31,5 @@ Pod::Spec.new do |s|
   s.macos.deployment_target = '10.9'
 
   s.source_files = 'Sources/**/*.{swift}'
+  s.swift_version = '5.1'
 end
